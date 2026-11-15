@@ -1,0 +1,37 @@
+[
+  {
+    "wrong": "73-CA",
+    "correct": "154B-23",
+    "note": "Sec 73-CA (two-children disqualification etc.) exists generally but is statutorily EXCLUDED for housing societies by Sec 154B(2). For CHS committee disqualification, the operative provision is Sec 154B-23."
+  },
+  {
+    "wrong": "Rule 58-A",
+    "correct": "154B-23 (read with 154B-8(2))",
+    "note": "Rule 58-A is the Form M-20 indemnity-bond rule — NOT disqualification — and the M-20 requirement was abolished in 2012. Disqualification of CHS committee members is governed by Sec 154B-23."
+  },
+  {
+    "wrong": "78",
+    "correct": "77A",
+    "note": "Sec 78 (supersession of a committee) is excluded for housing societies by Sec 154B(2). Administrator appointments for CHS run through Sec 77A."
+  },
+  {
+    "wrong": "101",
+    "correct": "154B-29",
+    "note": "Sec 101 recovery is excluded for housing societies by Sec 154B(2); recovery of society dues runs through Sec 154B-29 (Registrar's recovery certificate, revision under Sec 154)."
+  },
+  {
+    "wrong": "154B-5",
+    "correct": "154B-10",
+    "note": "Member rights and duties (including the redevelopment-critical duty to vacate, 154B-10(5)(ii)) live in Sec 154B-10 — not 154B-5."
+  },
+  {
+    "wrong": "154B-16",
+    "correct": "154B-16 (maintenance charges)",
+    "note": "154B-16 is about LEVY of maintenance/service charges — not 'transactions' as commonly assumed."
+  },
+  {
+    "wrong": "redevelopment section",
+    "correct": "79A + Model Bye-law 65",
+    "note": "There is NO dedicated redevelopment-procedure section in the Act. Procedure lives in Sec 79A GR directives (2009 → 2019 → 2026) and Model Bye-law 65 — and courts have held these directives directory, not mandatory."
+  }
+]

@@ -1,0 +1,277 @@
+{
+  "top5": ["79A", "91", "154B-10", "154B-29", "9_Arb"],
+  "sections": [
+    {
+      "id": "79A",
+      "title": "Section 79A — Power of State Government to give directions",
+      "titleMr": "कलम ७९(अ) — राज्य शासनाचे निर्देश देण्याचे अधिकार",
+      "summary": "The State Government may issue directives to a society in the public interest, after giving the society an opportunity to be heard. Almost the entire CHS redevelopment framework (consent percentages, developer selection, procedure) rests on 79A directives issued by GR — most recently the GR of 30 September 2026.",
+      "summaryMr": "सार्वजनिक हिताच्या दृष्टीने राज्य शासन संस्थेला संधी देऊन निर्देश देऊ शकते. गृहनिर्माण संस्थांच्या पुनर्विकासाची संपूर्ण यंत्रणा — संमती टक्केवारी, विकसक निवड, कार्यपद्धती — ७९(अ) अंतर्गतच्या शासन निर्णयांवर उभी आहे (सध्या ३० सप्टेंबर २०२६ चा निर्णय).",
+      "disputes": [
+        "Members challenge a redevelopment resolution claiming the 79A consent procedure was not followed",
+        "Committee claims GR directives are only advisory; members claim they are mandatory",
+        "Registrar acts on a member's complaint invoking a 79A directive"
+      ],
+      "disputesMr": [
+        "पुनर्विकास ठरावात ७९(अ) ची संमती-प्रक्रिया पाळली नाही, असा सभासदांचा आक्षेप",
+        "समितीचे म्हणणे: ७९(अ) चे निर्देश सल्लामानी आहेत; सभासदांचे म्हणणे: बंधनकारक आहेत",
+        "सभासदाच्या तक्रारीवर ७९(अ) च्या निर्देशाच्या आधारे रजिस्ट्रारची कार्यवाही"
+      ],
+      "ask": {
+        "memberPro": "Does the GR procedure bind my society, and can I force the committee to follow it?",
+        "memberAnti": "Can I challenge a redevelopment resolution because a GR step was skipped?",
+        "committee": "Which GR applies to us, and which steps must we document before the SGM?"
+      },
+      "landmarks": [
+        "Maya Developers / Shubham Builders / Harish Arora line — 79A directives held DIRECTORY, not mandatory; breach does not annul a majority redevelopment resolution",
+        "Anil Vanjpe v. Shri Krishna Govind Prasad CHS — majority GB decision binds minority members absent fraud; 79A directions advisory"
+      ],
+      "keywordsEn": ["79A directive", "redevelopment GR consent", "government direction society"],
+      "keywordsMr": ["पुनर्विकास", "शासन निर्णय", "संमती", "गृहनिर्माण संस्था"]
+    },
+    {
+      "id": "91",
+      "title": "Section 91 — Disputes (exclusive jurisdiction of the Co-operative Court)",
+      "titleMr": "कलम ९१ — वाद (सहकारी न्यायालयाचा अपवादात्मक अधिकारक्षेत्र)",
+      "summary": "Disputes touching the constitution, management or business of a society must go to the Co-operative Court — civil courts generally lack jurisdiction. For housing societies, member-vs-society disputes (including redevelopment decisions) route through 91. Society–developer contract disputes instead go to arbitration; the High Court also repeatedly relegates writ petitioners to their 91 remedy.",
+      "summaryMr": "संस्थेच्या रचना, व्यवस्थापन किंवा व्यवसायास स्पर्श करणारे वाद सहकारी न्यायालयातच जातात; दिवाणी न्यायालयाचा अधिकारक्षेत्र बहुतेक वर्जित. सभासद विरुद्ध संस्था (पुनर्विकास निर्णयांसह) — ९१; संस्था विरुद्ध विकसक करारवाद — लवादी. उच्च न्यायालय ९१ च्या पर्यायी उपायाकडे पाठवते.",
+      "disputes": [
+        "Member files a civil suit instead of a 91 dispute — jurisdiction challenge",
+        "Society argues a member's grievance is a 91 dispute and the writ should be dismissed",
+        "Whether a developer agreement dispute is arbitration (not 91)"
+      ],
+      "disputesMr": [
+        "सभासदाने ९१ ऐवजी दिवाणी दावा दाखल केला — अधिकारक्षेत्राचा वाद",
+        "संस्थेचे म्हणणे: सभासदाची तक्रार ९१ वाद आहे, लेखी याचिका फेटाळा",
+        "विकसक करारवाद लवादी आहे की ९१ वाद?"
+      ],
+      "ask": {
+        "memberPro": "Is my grievance a 91 dispute, and which cooperative court do I file in?",
+        "memberAnti": "Can the society force me out of civil court into the Co-operative Court?",
+        "committee": "Which forum handles this member complaint — us, the Court, or the Registrar?"
+      },
+      "landmarks": [
+        "Anil Keshav Vanjpe — 91 route for member challenges to redevelopment",
+        "Cuffe Castle CHS; Yograj CHS v. MCGM — writ rejected, relegated to Section 91 remedy"
+      ],
+      "keywordsEn": ["Section 91 dispute", "cooperative court jurisdiction"],
+      "keywordsMr": ["वाद", "सहकारी न्यायालय", "अधिकारक्षेत्र"]
+    },
+    {
+      "id": "154B-10",
+      "title": "Section 154B-10 — Rights and duties of members",
+      "titleMr": "कलम १५४ब-१० — सभासदांचे हक्क व कर्तव्ये",
+      "summary": "Chapter XIII-B's member-rights section: members' rights to information and participation, and — critically for redevelopment — the duty to cooperate, including the duty to vacate (154B-10(5)(ii)) once the redevelopment process is duly approved. The main statutory answer to minority hold-outs.",
+      "summaryMr": "प्रकरण १३-ब मधील सभासद-हक्क विभाग: माहिती व सहभागाचे हक्क, आणि पुनर्विकासासाठी निर्णायक — विधिवत मंजूर प्रक्रियेनंतर ताबा देण्याचे कर्तव्य (१५४ब-१०(५)(२)). अल्पसंख्य प्रतिरोध (होल्ड-आउट) विरुद्धची कायदेशीर साधने.",
+      "disputes": [
+        "Minority members refuse to vacate after a valid redevelopment majority",
+        "Members demand records/participation rights under 154B-10 read with 154B-8",
+        "Committee alleges member default of duties as leverage"
+      ],
+      "disputesMr": [
+        "वैध बहुमतानंतर अल्पसंख्य सभासद ताबा देण्यास नकार देतात",
+        "सभासद १५४ब-१० व १५४ब-८ अंतर्गत हक्क व अभिलेख मागतात",
+        "समिती सभासदाच्या कर्तव्य-भंगाचा दावा करते"
+      ],
+      "ask": {
+        "memberPro": "What are my rights to information and participation before I must decide?",
+        "memberAnti": "Can I be compelled to vacate — was the process truly complete?",
+        "committee": "How do we lawfully deal with members who refuse to vacate?"
+      },
+      "landmarks": [],
+      "keywordsEn": ["154B-10 member rights", "duty to vacate redevelopment"],
+      "keywordsMr": ["सभासद हक्क", "ताबा", "सहकार्य", "कर्तव्ये"]
+    },
+    {
+      "id": "154B-29",
+      "title": "Section 154B-29 — Recovery of dues as arrears of land revenue",
+      "titleMr": "कलम १५४ब-२९ — देयके जमिनीच्या महसुलाच्या दादांप्रमाणे वसुली",
+      "summary": "On a housing society's application, the Registrar may certify dues (maintenance, construction cost, service charges) recoverable as arrears of land revenue; the certificate is final and conclusive, subject to revision under Sec 154. The operative recovery route for CHS since old Sec 101 was excluded for housing societies by 154B(2).",
+      "summaryMr": "गृहनिर्माण संस्थेच्या अर्जावर रजिस्ट्रार देयकांसाठी (देखभाल, बांधकाम खर्च, सेवा शुल्क) वसुली प्रमाणपत्र जारी करतो — जमिनीच्या महसुलाच्या दादांप्रमाणे वसूल; कलम १५४ च्या पुनर्विलोकास सापेक्ष. जुने कलम १०१ १५४ब(२) ने गृहनिर्माण संस्थांसाठी वर्जित झाल्याने हीच सक्रिय वसुली-वाट आहे.",
+      "disputes": [
+        "Society obtains a 154B-29 certificate; member challenges it in writ — courts relegate to Sec 154 revision",
+        "Certificate set aside for want of notice/natural justice, matter remanded",
+        "Society seeks recovery of heavy 'penal' charges — proportionality questioned"
+      ],
+      "disputesMr": [
+        "१५४ब-२९ प्रमाणपत्राविरुद्ध लेखी याचिका — न्यायालय कलम १५४ पुनर्विलोकाकडे पाठवते",
+        "सूचना/नैसर्गिक न्याय न पाळता प्रमाणपत्र रद्द, प्रकरण परत पाठवले",
+        "अत्यधिक 'दंड' स्वरूपाच्या देयकांची वसुली — प्रमाणबद्धतेचा प्रश्न"
+      ],
+      "ask": {
+        "memberPro": "How do we recover dues from defaulting members or the developer?",
+        "memberAnti": "Was notice given and procedure followed before the certificate?",
+        "committee": "What documents must our application contain, and what happens in revision?"
+      },
+      "landmarks": [
+        "Legacy CHS — 154B-29 recovery line of cases",
+        "Lambason Hotel — certificate vitiated for want of service; remanded"
+      ],
+      "keywordsEn": ["154B-29 recovery certificate", "arrears of land revenue"],
+      "keywordsMr": ["वसुली प्रमाणपत्र", "देयके", "महसूल दाद"]
+    },
+    {
+      "id": "9_Arb",
+      "title": "Section 9, Arbitration and Conciliation Act 1996 — Interim measures",
+      "titleMr": "कलम ९ (लवादी व सुलह अधिनियम १९९६) — अंतरिम उपाय",
+      "summary": "Developers and societies use Sec 9 for urgent interim relief in stalled redevelopment — Court Receivers over the plot/flats, preservation orders, injunctions — while arbitration proceeds. Member-vs-society disputes stay with the Co-operative Court under Sec 91; individual members who are not parties to the arbitration agreement cannot invoke Sec 9.",
+      "summaryMr": "थांबलेल्या पुनर्विकासात विकसक/संस्था कलम ९ अंतर्गत तात्काळ अंतरिम दिलासा मागतात — न्यायालयीन पाहणेकर्ता, संरक्षण आदेश, स्थगिती. सभासद विरुद्ध संस्था वाद कलम ९१ त; लवादी कराराचे पक्षकार नसलेले सभासद ९ वापरू शकत नाहीत.",
+      "disputes": [
+        "Developer seeks Court Receiver over society property pending arbitration",
+        "Society seeks to restrain a developer from alienating FSI/TDR",
+        "Non-signatory member attempts Sec 9 — rejected"
+      ],
+      "disputesMr": [
+        "लवादी प्रलंबित असताना विकसकाची संस्थेच्या मालमत्तेवर पाहणेकर्ता मागणी",
+        "संस्थेची विकसकास FSI/TDR हस्तांतरणास मनाई मागणी",
+        "करारेतर सभासदाची ९ ची मागणी — नाकारली जाते"
+      ],
+      "ask": {
+        "memberPro": "Can we get urgent protection while the developer stalls?",
+        "memberAnti": "Does Sec 9 even apply to us if we never signed the agreement?",
+        "committee": "What interim orders can protect the project during arbitration?"
+      },
+      "landmarks": [
+        "Active Bombay HC docket: Shubham Builders, Dem Homes, Gulshan Townplanners, Polestar/Rachana, Maruthi line"
+      ],
+      "keywordsEn": ["Section 9 interim relief", "court receiver redevelopment"],
+      "keywordsMr": ["अंतरिम दिलासा", "पाहणेकर्ता", "लवादी"]
+    },
+    {
+      "id": "154B-23",
+      "title": "Section 154B-23 — Disqualification of Committee and its Members",
+      "titleMr": "कलम १५४ब-२३ — संचालक मंडळ व संचालकांची अपात्रता",
+      "summary": "The operative CHS committee-disqualification provision: committee members are disqualified for defaulting on society dues, carrying on letting/subletting/selling business in their own society, failure to supply documents under 154B-8(2), or enquiry costs under Sec 85 — seat deemed vacant; 5-year re-election bar for some clauses. (Old Sec 73CA is statutorily excluded for housing societies by 154B(2).)",
+      "summaryMr": "गृहनिर्माण संस्थेतील संचालक-अपात्रतेची सक्रिय तरतूद: देयके बुडत्या, आपल्याच संस्थेत बाडगा/उप-बाडगा व्यवसाय, १५४ब-८(२) अंतर्गत दस्तऐवज पुरवण्यात चूक, किंवा कलम ८५ च्या तपास खर्चास जबाबदार — जागा रिक्त मानली जाते; काही कलमांत ५ वर्षांची पुनर्निवड-बंदी. (जुने कलम ७३सीए १५४ब(२) ने वर्जित आहे.)",
+      "disputes": [
+        "Member gets chairman/secretary/treasurer disqualified for not supplying documents (154B-8(2) default)",
+        "Committee member challenges disqualification as colourable exercise before an SGM",
+        "Five-year bar disputes"
+      ],
+      "disputesMr": [
+        "१५४ब-८(२) चूकीवर अध्यक्ष/सचिव/खजिनदारांची अपात्रता",
+        "अपात्रता रंगबदल (कलरेबल) म्हणून आव्हान",
+        "५ वर्षांच्या पुनर्निवड-बंदीवरील वाद"
+      ],
+      "ask": {
+        "memberPro": "How do I disqualify a stonewalling committee member?",
+        "memberAnti": "Was due hearing given before the deemed vacancy?",
+        "committee": "Which document requests can trigger disqualification?"
+      },
+      "landmarks": [
+        "Shashikant M. Ramane (2026) — 154B-23 disqualification for 154B-8(2) default"
+      ],
+      "keywordsEn": ["154B-23 disqualification", "154B-8(2) documents"],
+      "keywordsMr": ["अपात्रता", "संचालक मंडळ", "दस्तऐवज"]
+    },
+    {
+      "id": "154B-8",
+      "title": "Section 154B-8 — Records, inspections and document supply",
+      "titleMr": "कलम १५४ब-८ — अभिलेख, तपासणी व दस्तऐवज पुरवठा",
+      "summary": "Members' right to inspect records and obtain copies within 45 days (fees payable); officers' failure is an offence (₹100/day up to ₹5,000) and a 154B-23 disqualification trigger. The documents lever members actually use in redevelopment fights.",
+      "summaryMr": "सभासदांना अभिलेख तपासणी व ४५ दिवसांत प्रती मिळवण्याचा हक्क; अधिकाऱ्यांची चूक = गुन्हा (₹१००/दिवस, ₹५,००० पर्यंत) व १५४ब-२३ अपात्रतेची वाट. पुनर्विकास वादांत सभासद खरोखर वापरणारे साधन.",
+      "disputes": [
+        "Member's document request ignored → disqualification proceedings",
+        "Society disputes scope/fees of requests",
+        "CDs of GB meeting recordings demanded"
+      ],
+      "disputesMr": [
+        "दस्तऐवज-मागणी दुर्लक्षित → अपात्रता कार्यवाही",
+        "मागणीच्या व्याप्ती/शुल्कावर वाद",
+        "सर्वसाधरण सभेच्या सीडी-रेकॉर्डिंगची मागणी"
+      ],
+      "ask": {
+        "memberPro": "What exactly can I demand, in what form, in 45 days?",
+        "memberAnti": "Is my request framed as vexatious by the society?",
+        "committee": "How do we comply without being trapped by engineered defaults?"
+      },
+      "landmarks": [
+        "Yogesh Desai — 154B-8 inspection",
+        "R-Euphoria Phase II — 154B-23(1)(iii) disqualification for 154B-8(2) default, writ dismissed"
+      ],
+      "keywordsEn": ["154B-8 documents 45 days", "inspection rights society"],
+      "keywordsMr": ["दस्तऐवज", "तपासणी", "४५ दिवस", "अभिलेख"]
+    },
+    {
+      "id": "77A",
+      "title": "Section 77A — Appointment of Administrator / Authorised Officer",
+      "titleMr": "कलम ७७अ — प्रशासक / अधिकृत अधिकारी नियुक्ती",
+      "summary": "Registrar may appoint an administrator where a society fails to constitute/re-elect its committee. Natural justice applies: notice inviting objections is generally required first. (Old Sec 78 supersession is statutorily excluded for housing societies by 154B(2) — administrator questions map to 77A.)",
+      "summaryMr": "संस्था समिती स्थापन/पुनर्निवड करण्यात अपयशी असल्यास रजिस्ट्रार प्रशासक नेमू शकतो. नैसर्गिक न्याय लागू: प्रथम आक्षेप मागण्याची सूचना आवश्यक. (जुने कलम ७८ १५४ब(२) ने वर्जित — प्रशासकाचे प्रश्न ७७अ कडे जातात.)",
+      "disputes": [
+        "Administrator/Authorised Officer appointed without notice — set aside",
+        "Members seek administrator appointment over a defunct committee",
+        "Administrator-initiated redevelopment barred by 2026 GR"
+      ],
+      "disputesMr": [
+        "सूचना न देता प्रशासक/अधिकृत अधिकारी नेमल्यास आदेश रद्द",
+        "निष्क्रिय समितीवर प्रशासकाची नेमणूक मागणी",
+        "२०२६ च्या निर्णयानुसार प्रशासकाकडून पुनर्विकास सुरू करणे बंधित"
+      ],
+      "ask": {
+        "memberPro": "When can we demand an administrator for a dysfunctional society?",
+        "memberAnti": "Was the notice-inviting-objections step followed before appointment?",
+        "committee": "What process protects our committee from supersession-style action?"
+      },
+      "landmarks": [
+        "Amrut Dhumal; Suresh Agarwal (SC stay pending) — administrator line",
+        "2026 order: appointment without objections-notice set aside (enriched corpus)"
+      ],
+      "keywordsEn": ["77A administrator", "authorised officer society"],
+      "keywordsMr": ["प्रशासक", "अधिकृत अधिकारी", "७७अ"]
+    },
+    {
+      "id": "154B-19",
+      "title": "Section 154B-19 — Committee composition (two-thirds rule)",
+      "titleMr": "कलम १५४ब-१९ — संचालक मंडळाची रचना (दोन-तृतीयांश नियम)",
+      "summary": "Committee composition rules including the two-thirds requirement — committee-validity fights often decide who is entitled to sign redevelopment agreements.",
+      "summaryMr": "संचालक मंडळाच्या रचनेचे नियम (दोन-तृतीयांश आवश्यकता) — समितीची वैधता हीच पुनर्विकास करार कोणी सही करावेत याची लढाई असते.",
+      "disputes": [
+        "Committee validity challenged mid-redevelopment",
+        "Disqualified members' signatures on agreements"
+      ],
+      "disputesMr": [
+        "पुनर्विकास सुरू असताना समिती-वैधतेस आव्हान",
+        "अपात्र सदस्यांची करार-सह्या"
+      ],
+      "ask": {
+        "memberPro": "Is our committee even validly constituted to sign a developer deal?",
+        "memberAnti": "Is the disqualification drive a ploy to invalidate our committee?",
+        "committee": "Do we meet the two-thirds composition test right now?"
+      },
+      "landmarks": [],
+      "keywordsEn": ["154B-19 committee two-thirds"],
+      "keywordsMr": ["संचालक मंडळ", "रचना", "वैधता"]
+    },
+    {
+      "id": "101",
+      "title": "Section 101 (legacy) — Recovery certificate (NOT applicable to housing societies)",
+      "titleMr": "कलम १०१ (जुने) — वसुली प्रमाणपत्र (गृहनिर्माण संस्थांना लागू नाही)",
+      "summary": "Since the 2019 amendment, Sec 101 is in the 154B(2) non-application list for housing societies and the CHS-specific words were removed from 101(1) — the operative route is 154B-29. Many orders still cite 101 out of habit; the app maps these to 154B-29.",
+      "summaryMr": "२०१९ च्या दुरुस्तीनंतर कलम १०१ १५४ब(२) च्या अनामता-यादीत आहे व १०१(१) मधून गृहनिर्माण संस्थेचे शब्द काढले गेले — सक्रिय वाट १५४ब-२९ आहे. अनेक आदेश आजही प्रघाताने १०१ दाखवतात; ॲप त्यांना १५४ब-२९ कडे निर्देशित करते.",
+      "disputes": [
+        "Orders citing 101 for CHS recovery — mapped to 154B-29"
+      ],
+      "disputesMr": [
+        "संस्था-वसुलीसाठी १०१ दाखवणारे आदेश — १५४ब-२९ कडे निर्देशन"
+      ],
+      "ask": {
+        "memberPro": "Which recovery section actually applies to us — 101 or 154B-29?",
+        "memberAnti": "Can I use the 101/154B(2) conflict to attack the certificate?",
+        "committee": "Which section must our recovery application cite?"
+      },
+      "landmarks": [],
+      "keywordsEn": ["Section 101 recovery legacy"],
+      "keywordsMr": ["वसुली", "जुने कलम"]
+    }
+  ],
+  "misroutes": [
+    {"wrong": "73-CA", "correct": "154B-23", "note": "Sec 73-CA (two-children disqualification etc.) exists generally but is statutorily EXCLUDED for housing societies by Sec 154B(2). For CHS committee disqualification, the operative provision is Sec 154B-23."},
+    {"wrong": "Rule 58-A", "correct": "154B-23 (read with 154B-8(2))", "note": "Rule 58-A is the Form M-20 indemnity-bond rule — NOT disqualification — and the M-20 requirement was abolished in 2012. Disqualification of CHS committee members is governed by Sec 154B-23."},
+    {"wrong": "78", "correct": "77A", "note": "Sec 78 (supersession of a committee) is excluded for housing societies by Sec 154B(2). Administrator appointments for CHS run through Sec 77A."},
+    {"wrong": "101", "correct": "154B-29", "note": "Sec 101 recovery is excluded for housing societies by Sec 154B(2); recovery of society dues runs through Sec 154B-29 (Registrar's recovery certificate, revision under Sec 154)."},
+    {"wrong": "154B-5", "correct": "154B-10", "note": "Member rights and duties (including the redevelopment-critical duty to vacate, 154B-10(5)(ii)) live in Sec 154B-10 — not 154B-5."},
+    {"wrong": "154B-16", "correct": "154B-16 (maintenance charges)", "note": "154B-16 is about LEVY of maintenance/service charges — not 'transactions' as commonly assumed."},
+    {"wrong": "redevelopment section", "correct": "79A + Model Bye-law 65", "note": "There is NO dedicated redevelopment-procedure section in the Act. Procedure lives in Sec 79A GR directives (2009 → 2019 → 2026) and Model Bye-law 65 — and courts have held these directives directory, not mandatory."}
+  ]
+}

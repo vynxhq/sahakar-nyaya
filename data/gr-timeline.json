@@ -1,0 +1,87 @@
+{
+  "items": [
+    {
+      "date": "1991",
+      "dateMr": "१९९१",
+      "title": "First redevelopment directives (pre-GR framework)",
+      "titleMr": "पहिली पुनर्विकास निर्देश",
+      "desc": "Earliest Sec 79A directives for CHS redevelopment — the starting point of the consent-and-procedure framework.",
+      "descMr": "७९(अ) अंतर्गत गृहनिर्माण संस्थांच्या पुनर्विकासासाठी पहिली निर्देश — संमती व कार्यपद्धती यंत्रणेचा आरंभ.",
+      "doc": null
+    },
+    {
+      "date": "3 January 2009",
+      "dateMr": "३ जानेवारी २००९",
+      "title": "GR — सगृयो-2007/प्र.क्र.554/14-स (70% consent era)",
+      "titleMr": "शासन निर्णय — सगृयो-२००७/प्र.क्र.५५४/१४-स (७०% संमती)",
+      "desc": "The foundational redevelopment directive under Sec 79A: required 70% member consent, defined the developer-selection procedure. (Cooperation Dept; also re-issued by Housing Dept as क्रमांक सहकार 2008/79(अ)/94/15-स.)",
+      "descMr": "७९(अ) अंतर्गत पायाभूत पुनर्विकास निर्देश: ७०% सभासद-संमती आवश्यक; विकसक-निवड प्रक्रिया ठरवली. (सहकार विभाग; गृह विभागाकडूनही क्रमांक सहकार 2008/79(अ)/94/15-स.)",
+      "doc": "legal-docs/GR_2009-01-03_redevelopment.pdf"
+    },
+    {
+      "date": "4 July 2019",
+      "dateMr": "४ जुलै २०१९",
+      "title": "GR — 51% consent regime (Cooperation Dept: सगृयो-2018/प्र.क्र.85/14-स; parallel Housing Dept GR)",
+      "titleMr": "शासन निर्णय — ५१% संमती (सहकार विभाग: सगृयो-२०१८/प्र.क्र.८५/१४-स; गृह विभागाची समांतर प्रत)",
+      "desc": "Reduced consent to 51% of total members; restructured developer selection. Superseded the 2009 GR. The linked PDF is the Housing Dept copy from gr.maharashtra.gov.in.",
+      "descMr": "एकूण सभासदांपैकी ५१% संमती; विकसक-निवड पुनर्रचना. सहकार विभागाचा निर्णय; गृह विभागाची समांतर प्रत उपलब्ध. २००९ च्या निर्णयाला अधिक्रमित.",
+      "doc": "legal-docs/GR_2019-07-04_redevelopment.pdf"
+    },
+    {
+      "date": "13 September 2019",
+      "dateMr": "१३ सप्टेंबर २०१९",
+      "title": "GR — self-redevelopment incentives (स्वपुनर्विकास)",
+      "titleMr": "शासन निर्णय — स्वपुनर्विकास प्रोत्साहन (गृह निर्माण विभाग)",
+      "desc": "Housing Dept GR: FSI raised 9.00 → 12.00 for self-redevelopment, rehab-area concessions, bank-loan facilitation — 51% vote to proceed, written consent afterwards rests with members, not builders.",
+      "descMr": "गृहनिर्माण विभाग निर्णय: स्वपुनर्विकासासाठी FSI ९.०० → १२.००, पुनर्वस्ती-क्षेत्र सूट, बँक-कर्ज सुविधा — पुढे जाण्यासाठी ५१% मत; लेखी संमती व बँक हमी निर्णय सभासदांच्या हातात, विकसकाच्या नाहीत.",
+      "doc": "legal-docs/GR_2019-09-13_self-redevelopment.pdf"
+    },
+    {
+      "date": "9 March 2019 → 2022",
+      "dateMr": "९ मार्च २०१९ → २०२२",
+      "title": "MCS Act amendment — Chapter XIII-B (Sections 154B to 154B-31)",
+      "titleMr": "म.स.का. दुरुस्ती — प्रकरण १३-ब (कलम १५४ब ते १५४ब-३१)",
+      "desc": "Ordinance IX of 2019 (9 Mar 2019) replaced by the Amendment Act; inserted the housing-society chapter: 154B(2) excludes several general sections for CHS (73CA, 78, 101…); 154B-17 makes redevelopment an express society object. Later changes: L.A. Bill XXXIX of 2021, 2023 Ordinance, Mah. Act XVI of 2022.",
+      "descMr": "अध्यादेश ९/२०१९ (९ मार्च २०१९) → दुरुस्ती अधिनियम; गृहनिर्माण संस्थांसाठी प्रकरण १३-ब: १५४ब(२) ने काही सर्वसाधारण कलमे वर्जित (७३सीए, ७८, १०१…); १५४ब-१७ मध्ये पुनर्विकास ही संस्थेची उद्देश-वस्तू. नंतर: वि.वि.ख. ३९/२०२१, २०२३ अध्यादेश, मह. अधिनियम १६/२०२२.",
+      "doc": "legal-docs/Bill_17_of_2019_MCS_Amendment_PRS.pdf"
+    },
+    {
+      "date": "18 June 2026 (effective 30 June 2026)",
+      "dateMr": "१८ जून २०२६ (लागू ३० जून २०२६)",
+      "title": "MCS (Amendment) Rules, 2026 — Gazette Ext. No. 366 (Part 4-B)",
+      "titleMr": "म.स.का. (दुरुस्ती) नियम, २०२६ — राजपत्र असाधारण क्र. ३६६ (भाग ४-ब)",
+      "desc": "Cooperation Dept notification संनिधि/0321/प्र.क्र.41/13-स — the rule framework accompanying the new redevelopment regime (59-pp gazette).",
+      "descMr": "सहकार विभाग अधिसूचना संनिधि/0321/प्र.क्र.41/13-स — नवीन पुनर्विकास रचनेसाथीचे नियम (५९ पानांचा राजपत्र).",
+      "doc": "legal-docs/MCS_Amendment_Rules_2026_gazette.pdf"
+    },
+    {
+      "date": "30 September 2026",
+      "dateMr": "३० सप्टेंबर २०२६",
+      "title": "GR — सगृयो-2026/प्र.क्र.108/14-स (CURRENT framework)",
+      "titleMr": "शासन निर्णय — सगृयो-२०२६/प्र.क्र.१०८/१४-स (सध्याची यंत्रणा)",
+      "desc": "Replaces the 4 Jul 2019 GR. Key changes: consent 51% of TOTAL members at initiation AND developer selection; two-thirds quorum with 51% physical presence; proxies curtailed; min. 3 tenders; Registrar-appointed Authorised Officer + video-recorded meetings; development agreement within 3 months; completion within 2 years of plinth certificate (max 3); GB-set bank guarantee; RERA carpet-area disclosure; administrators barred from initiating; committee member/relative cannot be the developer.",
+      "descMr": "४ जुलै २०१९ च्या निर्णयाला अधिक्रमित. बदल: सुरुवात व विकसक-निवडीस एकूण सभासदांपैकी ५१% संमती; दोन-तृतीयांश गणपूर्ती व ५१% उपस्थिती; प्रतिनिधी-संमती बंद; किमान ३ निविदा; रजिस्ट्रार-नियुक्त अधिकृत अधिकारी व व्हिडीओ-अभिलेख; करार ३ महिन्यांत; पाया-प्रमाणपत्रानंतर २ वर्षांत (कमाल ३) पूर्ण; सर्वसाधरण सभेची बँक हमी; RERA मोजमाप; प्रशासकाकडून सुरुवात बंधित; समिती-सदस्य/नातेवाईक विकसक होऊ शकत नाहीत.",
+      "doc": "legal-docs/GR_2026-09-30_redevelopment_OFFICIAL.pdf"
+    },
+    {
+      "date": "13 August 2026 (draft)",
+      "dateMr": "१३ ऑगस्ट २०२६ (मसुदा)",
+      "title": "Draft revised Model Bye-laws 2026 (2014 version still in force)",
+      "titleMr": "मसुदा — करारनाम्यांचे २०२६ पुनरीक्षण (२०१४ चे करारनामे अजून लागू)",
+      "desc": "Proposed revised Model Bye-laws (183 pp, with existing-vs-proposed annotations, incl. redevelopment/self-redevelopment borrowing provisions); objections window closed 27 Aug 2026. Until notified, the 2014 Model Bye-laws (incl. Bye-law 65) remain in force.",
+      "descMr": "प्रस्तावित करारनामे (१८३ पाने, विद्यमान-व-प्रस्तावित तुलनेसह; पुनर्विकास/स्वपुनर्विकास कर्ज तरतूदींसह); आक्षेप-मुदत २७ ऑगस्ट २०२६. अधिसूचना होईपर्यंत २०१४ चे करारनामे (नियम ६५ सह) लागू.",
+      "doc": "legal-docs/Model_ByeLaws_CHS_2026_draft.pdf"
+    },
+    {
+      "date": "Model Bye-laws 2014",
+      "dateMr": "मॉडेल करारनामे २०१४",
+      "title": "Model Bye-laws of CHS 2014 (current; Bye-law 65 = redevelopment procedure)",
+      "titleMr": "गृहनिर्माण संस्था मॉडेल करारनामे २०१४ (सध्याचे; नियम ६५ = पुनर्विकास प्रक्रिया)",
+      "desc": "The bye-law framework in force today. Redevelopment procedure lives here (Bye-law 65) plus the GRs — courts have held the GR directives directory, not mandatory.",
+      "descMr": "आज लागू असलेले करारनामे. पुनर्विकास प्रक्रिया यातच (नियम ६५) व ७९(अ) निर्णयांत — न्यायालयांनी निर्देश सल्लामानी मानले आहेत, बंधनकारक नाहीत.",
+      "doc": "legal-docs/Model_ByeLaws_CHS_2014_FlatOwner_2Sep2014.pdf"
+    }
+  ],
+  "sourcePackNote": "All documents from official Maharashtra government portals (gr.maharashtra.gov.in, mahasahakar.maharashtra.gov.in, egazzete.mahaonline.gov.in, sahakarayukta.maharashtra.gov.in) — see Research/legal-source-pack/README.md for provenance.",
+  "sourcePackNoteMr": "सर्व दस्तऐवज महाराष्ट्र शासनाच्या अधिकृत संकेतस्थळांवरून (gr.maharashtra.gov.in, mahasahakar.maharashtra.gov.in, egazzete.mahaonline.gov.in, sahakarayukta.maharashtra.gov.in) — मूळ स्रोतांसाठी Research/legal-source-pack/README.md पहा."
+}
