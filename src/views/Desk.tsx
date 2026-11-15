@@ -6,6 +6,10 @@ import {
 import { useLang, type LangCtx } from "@/state/lang";
 import { loadTopic, store, type Topic } from "@/data/loader";
 import { useHeadnote } from "@/hooks/use-headnote";
+import { ReadingProgress, FeedbackWidget, ShareButton } from "@/components/TopicExtras";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { NumberTicker } from "@/components/magicui/number-ticker";
 
 const CATS = [
   { id: "redevelopment", icon: Building2 },
@@ -119,8 +123,11 @@ export function Rail({ slug, role, category, onCategory, onRole }: {
 /* ================= welcome document ================= */
 
 export function WelcomeDoc(): React.ReactNode {
-  const { lang } = useLang();
+  const { t, lang } = useLang();
   const count = store.topicsIndex?.topics.length ?? 0;
+  const lite = store.lite ?? [];
+  const redev = lite.filter(j => j.isRedevelopment).length;
+  const benches = new Set(lite.map(j => j.bench)).size;
   return (
     <div>
       <p className="text-xs font-bold uppercase tracking-[0.1em] text-primary">
@@ -136,6 +143,24 @@ export function WelcomeDoc(): React.ReactNode {
           ? "डावीकडून आपले क्षेत्र, भूमिका आणि परिस्थिती निवडा. उजव्या बाजूला कायदा काय म्हणतो, न्यायालयांनी काय ठरवले आणि पुढे काय करावे — हे निर्देशित उत्तर दिसेल."
           : "Use the guide on the left: pick your area, your role and your situation. The answer document opens here — the settled position first, then the law, the courts and your next steps."}
       </p>
+      {lite.length > 0 && (
+        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[
+            [lite.length, t("statJudgements")],
+            [redev, t("statRedev")],
+            [benches, t("statBenches")],
+          ].map(([v, label]) => (
+            <div key={label as string} className="rounded-xl border bg-card p-4 text-center shadow-sm">
+              <NumberTicker value={v as number} className="block font-display text-2xl font-bold text-primary" />
+              <span className="text-[0.74rem] text-muted-foreground">{label as string}</span>
+            </div>
+          ))}
+          <div className="rounded-xl border bg-card p-4 text-center shadow-sm">
+            <b className="block font-display text-2xl font-bold text-primary">2022–26</b>
+            <span className="text-[0.74rem] text-muted-foreground">{t("statYears")}</span>
+          </div>
+        </div>
+      )}
       <div className="mt-8 flex flex-col gap-2">
         <a href="#/browse" className="flex items-center gap-3 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors hover:border-primary hover:text-primary">
           <Compass size={17} className="text-primary" />
@@ -184,10 +209,22 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
 
   return (
     <article>
-      <p className="text-xs font-bold uppercase tracking-[0.1em] text-primary">{t("topics")}</p>
+      <ReadingProgress />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-xs font-bold uppercase tracking-[0.1em] text-primary">{t("topics")}</p>
+        <ShareButton title={bLang(topic.title_en, topic.title_mr)} lang={lang} />
+      </div>
       <h1 className="mt-2 font-display text-3xl font-light leading-[1.2] tracking-tight">
         {bLang(topic.title_en, topic.title_mr)}
       </h1>
+      <div className="mt-4 flex flex-wrap gap-1.5 text-sm">
+        {[["settled", t("settledTitle")], ["disagreement", t("disputeATitle")], ["law", t("lawSays")],
+          ["courts", t("courtsHeld")], ["steps", t("nextStepsTitle")], ["sources", t("sectionsHeading")]].map(([id, label]) => (
+          <a key={id} href={`#${id}`} className="rounded-full border border-border px-3 py-1 text-[0.78rem] text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+            {label}
+          </a>
+        ))}
+      </div>
 
       <div className="mt-5 border-y border-border py-4 text-[0.98rem] leading-relaxed">
         {rk === "committee"
@@ -196,7 +233,8 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       </div>
 
       {/* settled position first */}
-      <div className="my-6 rounded-xl border-l-4 border-primary bg-card p-5 shadow-sm">
+      <div id="settled" className="relative my-6 overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm">
+        <BorderBeam size={50} duration={7} />
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <span className="text-[0.72rem] font-bold uppercase tracking-[0.08em] text-primary">{t("settledTitle")}</span>
           <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 text-[0.66rem] text-muted-foreground">
@@ -209,8 +247,9 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       </div>
 
       {/* the disagreement */}
+      <div id="disagreement" />
       <h2 className="font-display text-xl">{lang === "mr" ? "वाद — दोन्ही बाजू" : "The disagreement"}</h2>
-      <div className="mt-3 grid gap-3 md:grid-cols-2">
+      <BlurFade inView delay={0.1} className="mt-3 grid gap-3 md:grid-cols-2">
         <div className="rounded-xl border bg-card p-4">
           <div className="mb-2 text-[0.7rem] font-bold uppercase tracking-widest text-muted-foreground">{t("disputeATitle")}</div>
           <p className="text-[0.92rem] leading-relaxed">{bLang(topic.disputeA_en, topic.disputeA_mr)}</p>
@@ -219,7 +258,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
           <div className="mb-2 text-[0.7rem] font-bold uppercase tracking-widest text-muted-foreground">{t("disputeBTitle")}</div>
           <p className="text-[0.92rem] leading-relaxed">{bLang(topic.disputeB_en, topic.disputeB_mr)}</p>
         </div>
-      </div>
+      </BlurFade>
 
       {/* law */}
       <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "कायदा काय म्हणतो" : "What the law says"}</h2>
@@ -301,6 +340,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
         </>
       )}
       <div className="mt-8"><a href="#/browse" className="text-sm font-semibold text-primary">← {t("allTopics")}</a></div>
+      <FeedbackWidget lang={lang} />
     </article>
   );
 }
