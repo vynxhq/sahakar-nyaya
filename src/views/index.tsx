@@ -321,7 +321,7 @@ export function viewTimeline(ctx: LangCtx): React.ReactNode {
               {ctx.lang === "mr" ? it.titleMr : it.title}
             </Heading>
             <Text style={{ fontSize: "0.9rem" }}>{ctx.lang === "mr" ? it.descMr : it.desc}</Text>
-            {it.doc && <a href={it.doc} target="_blank" rel="noopener" style={{ fontSize: "0.85rem" }}>📄 {t("officialDoc")}</a>}
+            {it.doc && <a href={it.doc} target="_blank" rel="noopener" style={{ fontSize: "0.85rem" }}><FileText size={14} style={{ display: "inline", verticalAlign: "-2px", marginRight: 4 }} />{t("officialDoc")}</a>}
           </div>
         ))}
       </div>

@@ -1,56 +1,54 @@
-/* Sahakar Nyaya design tokens — indigo + saffron, light-first.
-   Unlayered so these override Astryx's @layer astryx-theme tokens. */
+/* Sahakar Nyaya v4 — "Accessible & Ethical" design system.
+   Navy ink, institutional blue, Atkinson Hyperlegible, zero gradients,
+   zero emoji-icons. The document IS the design. */
 
 :root {
-  /* surfaces */
+  /* surfaces + ink */
   --ink: #0f172a;
   --ink-2: #475569;
-  --paper: #f8f9fc;
+  --paper: #f8fafc;
   --surface: #ffffff;
+  --muted: #e8ecf1;
   --border: #e2e8f0;
 
-  /* brand */
-  --primary: #4f46e5;
-  --primary-strong: #4338ca;
-  --primary-deep: #1e1b4b;
-  --saffron: #f59e0b;
-  --saffron-deep: #d97706;
+  /* brand: institutional blue */
+  --primary: #0369a1;
+  --primary-strong: #075985;
+  --primary-deep: #0f172a;
+  --ring: #0369a1;
 
   /* semantic */
-  --success: #059669;
-  --warning: #d97706;
-  --error: #dc2626;
+  --success: #15803d;
+  --warning: #b45309;
+  --error: #b91c1c;
 
-  /* category hues */
-  --hue-redevelopment: #4f46e5;
-  --hue-membership: #0d9488;
-  --hue-committee: #7c3aed;
-  --hue-money: #059669;
-  --hue-records: #d97706;
-  --hue-disputes: #e11d48;
-
-  /* shape + depth */
-  --radius-card: 16px;
-  --radius-control: 12px;
-  --shadow-rest: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
-  --shadow-lift: 0 8px 24px rgba(79, 70, 229, 0.12);
-  --shadow-hero: 0 20px 40px rgba(30, 27, 75, 0.25);
+  /* category hues (chips stay monochrome-blue; categories differ by icon) */
+  --hue-redevelopment: #0369a1;
+  --hue-membership: #075985;
+  --hue-committee: #075985;
+  --hue-money: #0369a1;
+  --hue-records: #075985;
+  --hue-disputes: #0369a1;
 
   /* fonts */
-  --font-body: "Figtree", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-heading: "Montserrat", "Noto Sans Devanagari", "Figtree", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-heading: "Atkinson Hyperlegible", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
 
-  /* Astryx overrides (accent family + fonts) */
-  --color-accent: #4f46e5;
+  /* Astryx overrides */
+  --color-accent: #0369a1;
   --color-on-accent: #ffffff;
-  --color-text-accent: #4f46e5;
-  --color-icon-accent: #4f46e5;
-  --color-accent-muted: rgba(79, 70, 229, 0.1);
+  --color-text-accent: #0369a1;
+  --color-icon-accent: #0369a1;
+  --color-accent-muted: rgba(3, 105, 161, 0.08);
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
-  --color-background-body: #f8f9fc;
+  --color-background-body: #f8fafc;
   --color-background-card: #ffffff;
   --color-border: #e2e8f0;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-error: #b91c1c;
   --font-family-body: var(--font-body);
   --font-family-heading: var(--font-heading);
 }

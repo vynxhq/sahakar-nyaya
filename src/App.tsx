@@ -106,6 +106,7 @@ export default function App() {
           ) : undefined}
           topNav={
             <TopNav
+              className="sn-topbar"
               heading={
                 <a href="#/" className="sn-brand" style={{ textDecoration: "none" }}>
                   <span className="sn-brand-mark"><Scale size={20} /></span>

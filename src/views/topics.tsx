@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Heading, Text, Card, Grid, Stack, Button, Stepper, Step, Selector, Badge, Banner } from "@astryxdesign/core";
-import { CheckCircle2, Building2, Users, Wallet, Home as HomeIcon, FolderOpen, Scale } from "lucide-react";
+import { Building2, Users, Wallet, Home as HomeIcon, FolderOpen, Scale } from "lucide-react";
 import { useLang } from "../state/lang";
 import { loadTopicsIndex, loadTopic, loadHeadnotes, type TopicsIndex, type Topic } from "../data/loader";
 
@@ -187,18 +187,24 @@ export function TopicPageView({ slug, qstr }: { slug: string; qstr: string }): R
 
   return (
     <>
-      <Heading level={2} style={{ margin: "6px 0 4px" }}>{title}</Heading>
+      <h1 className="sn-topic-title">{title}</h1>
       {topic.redev && <Badge variant="info" label={t("redevTag")} />}
       {role === "committee" || role === "office" ? (
-        <Banner status="info" title={topic.roleFraming.committee_en} description={topic.roleFraming.committee_mr} container="section" elevation="none" />
+        <div className="sn-role-banner">{topic.roleFraming.committee_en}<div className="mr">{topic.roleFraming.committee_mr}</div></div>
       ) : (
-        <Banner status="info" title={topic.roleFraming.member_en} description={topic.roleFraming.member_mr} container="section" elevation="none" />
+        <div className="sn-role-banner">{topic.roleFraming.member_en}<div className="mr">{topic.roleFraming.member_mr}</div></div>
       )}
 
-      <div className="sn-outcome sn-outcome-a">{t("disputeATitle")}</div>
-      <Card style={{ marginBottom: 12 }}>{bLang(topic.disputeA_en, topic.disputeA_mr)}</Card>
-      <div className="sn-outcome sn-outcome-b">{t("disputeBTitle")}</div>
-      <Card style={{ marginBottom: 12 }}>{bLang(topic.disputeB_en, topic.disputeB_mr)}</Card>
+      <div className="sn-compare">
+        <div className="sn-interpretation">
+          <div className="sn-int-label">{t("disputeATitle")}</div>
+          <div className="sn-int-body">{bLang(topic.disputeA_en, topic.disputeA_mr)}</div>
+        </div>
+        <div className="sn-interpretation">
+          <div className="sn-int-label">{t("disputeBTitle")}</div>
+          <div className="sn-int-body">{bLang(topic.disputeB_en, topic.disputeB_mr)}</div>
+        </div>
+      </div>
 
       <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("lawSays")}</Heading>
       <Card>
@@ -214,8 +220,8 @@ export function TopicPageView({ slug, qstr }: { slug: string; qstr: string }): R
       <CourtsHeld topic={topic} />
 
       <div className="sn-settled">
-        <div className="sn-settled-mark"><CheckCircle2 size={17} /> {t("settledTitle")}<span className="sn-settled-ai">{t("aiLabelShort")}</span></div>
-        <Text>{bLang(topic.settled_en, topic.settled_mr)}</Text>
+        <div className="sn-settled-mark">{t("settledTitle")}<span className="sn-settled-ai">{t("aiLabelShort")}</span></div>
+        <div>{bLang(topic.settled_en, topic.settled_mr)}</div>
       </div>
 
       <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("nextStepsTitle")}</Heading>
@@ -282,7 +288,7 @@ function CourtsHeld({ topic }: { topic: Topic }): React.ReactNode {
       <Text style={{ color: "var(--color-text-secondary)", marginBottom: 12 }}>{t("courtsHeldSub")}</Text>
       {groups.map(([label, ids]) => ids.length === 0 ? null : (
         <Card key={label} style={{ marginBottom: 12 }}>
-          <span className={label === t("courtsA") ? "sn-outcome sn-outcome-a" : label === t("courtsB") ? "sn-outcome sn-outcome-b" : "sn-outcome sn-outcome-c"}>{label}</span>
+          <span className={label === t("courtsA") ? "sn-outcome sn-outcome-a" : label === t("courtsB") ? "sn-outcome sn-outcome-b" : "sn-outcome sn-outcome-c"}>{label} <span className="count">{ids.length}</span></span>
           <div style={{ marginTop: 8 }}>
             {ids.map(id => {
               const hn = chunks[id];
