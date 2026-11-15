@@ -142,8 +142,6 @@
   .sn-kbd-trigger { min-width: 0; flex: 1; padding: 7px 10px; }
 }
 @media (max-width: 899px) {
-@media (max-width: 899px) {
-  .sn-desk { grid-template-columns: 1fr; }
   .sn-rail {
     position: static; height: auto;
     border-right: none; border-bottom: 1px solid var(--border);
