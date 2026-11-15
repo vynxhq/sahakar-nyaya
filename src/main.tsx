@@ -3,17 +3,12 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "@fontsource/atkinson-hyperlegible/400.css";
 import "@fontsource/atkinson-hyperlegible/700.css";
-import "@fontsource/source-serif-4/300.css";
 import "@fontsource/source-serif-4/400.css";
 import "@fontsource/source-serif-4/600.css";
 import "@fontsource/noto-serif-devanagari/400.css";
 import "@fontsource/noto-sans-devanagari/400.css";
 import "@fontsource/noto-sans-devanagari/700.css";
-import "@astryxdesign/core/reset.css";
-import "@astryxdesign/core/astryx.css";
-import "@astryxdesign/theme-stone/theme.css";
-import "./styles.css";
-import "./theme/tokens.css";
+import "./index.css";
 
 // register the service worker (hash is bumped by scripts/sw-manifest.mjs at build time)
 if ("serviceWorker" in navigator && location.hostname !== "localhost") {

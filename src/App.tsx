@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Scale, Search, X } from "lucide-react";
-import { stoneTheme } from "./theme/sahakarTheme";
-import { Theme } from "@astryxdesign/core/theme";
 import { LangContext, initLangFromStorage, type LangCtx } from "./state/lang";
 import { catalog, tr, type CatalogKey, type Lang } from "./i18n/catalogs";
-import { loadCore, loadTopic, warmHeavy, store, type Topic } from "./data/loader";
-import { Palette, usePaletteShortcut } from "./components/Palette";
-import { Rail, WelcomeDoc, TopicDoc } from "./views/Desk";
+import { loadCore, warmHeavy, store } from "./data/loader";
+import { Palette } from "./components/Palette";
+import { Rail, WelcomeDoc, TopicPane } from "./views/Desk";
+import { TimelineDoc, ReferenceDoc, AboutDoc } from "./views/Docs";
 import { JudgementsView, JudgementDoc } from "./views/Judgements";
 import { BrowseView } from "./views/Browse";
-import { TimelineDoc, ReferenceDoc, AboutDoc } from "./views/Docs";
 
 function parseHash(): { path: string; sub: string; qstr: string } {
   let h = location.hash.replace(/^#\/?/, "");
@@ -80,16 +78,16 @@ export default function App() {
     const iv = setInterval(() => force(x => x + 1), 1200);
     return () => clearInterval(iv);
   }, []);
-  // Bug A fix: when a topic is open but no area was picked, derive the area
-  // from the topic's category so the Role/Situation lists are never hidden.
   useEffect(() => {
-    if (view.name !== "desk" || !view.slug) return;
-    if (guideCategory) return;
-    const tp = store.topics[view.slug] ?? store.topicsIndex?.topics.find(x => x.slug === view.slug);
-    const cat = tp?.category ?? store.topicsIndex?.topics.find(x => x.slug === view.slug)?.category;
-    if (cat) setGuideCategory(cat);
-  }, [view, guideCategory]);
-  usePaletteShortcut(setPaletteOpen);
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const t = (key: CatalogKey) => tr(lang, key);
 
@@ -107,8 +105,8 @@ export default function App() {
     switch (view.name) {
       case "desk":
         pane = view.slug
-          ? <TopicPane slug={view.slug} lang={lang} />
-          : <WelcomeDoc ctx={ctx} />;
+          ? <TopicPane ctx={ctx} slug={view.slug} />
+          : <WelcomeDoc />;
         break;
       case "browse": pane = <BrowseView ctx={ctx} />; break;
       case "judgements": pane = <JudgementsView ctx={ctx} qstr={view.qstr} />; break;
@@ -124,8 +122,7 @@ export default function App() {
 
   return (
     <LangContext.Provider value={ctx}>
-      <Theme theme={stoneTheme} mode="light">
-        {pillOpen && (
+              {pillOpen && (
           <div className="sn-pill">
             <X size={14} style={{ transform: "rotate(45deg)" }} />
             <span>{t("banner")}</span>
@@ -152,7 +149,6 @@ export default function App() {
 
         <div className="sn-desk">
           <Rail
-            ctx={ctx}
             slug={deskTopic}
             role={deskRole}
             category={guideCategory}
@@ -161,30 +157,12 @@ export default function App() {
               setGuideRole(r);
               if (deskTopic) location.hash = `#/t/${deskTopic}?role=${r}`;
             }}
-            onNavigate={() => {}}
           />
           <main className="sn-pane">{pane}</main>
         </div>
 
-        {paletteOpen && <Palette lang={lang} onClose={() => setPaletteOpen(false)} />}
-      </Theme>
+        {paletteOpen && <Palette onClose={() => setPaletteOpen(false)} />}
     </LangContext.Provider>
   );
 }
 
-function TopicPane({ slug, lang }: { slug: string; lang: Lang }) {
-  const [topic, setTopic] = useState<Topic | null>(store.topics[slug] ?? null);
-  const [missing, setMissing] = useState(false);
-  useEffect(() => {
-    let alive = true;
-    setTopic(store.topics[slug] ?? null);
-    setMissing(false);
-    loadTopic(slug).then(tp => { if (alive) setTopic(tp); }).catch(() => { if (alive) setMissing(true); });
-    return () => { alive = false; };
-  }, [slug]);
-  const t = (key: CatalogKey) => tr(lang, key);
-  const paneCtx: LangCtx = { lang, setLang: () => {}, t };
-  if (missing) return <div className="sn-empty">{t("judgNotFound")}</div>;
-  if (!topic) return <div className="sn-empty">{t("loading")}</div>;
-  return <TopicDoc ctx={paneCtx} topic={topic} />;
-}

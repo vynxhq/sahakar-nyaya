@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { Pagination } from "@astryxdesign/core";
 import type { LangCtx } from "../state/lang";
 
 import {
@@ -99,9 +98,12 @@ export function JudgementsView({ ctx, qstr }: { ctx: LangCtx; qstr: string }) {
         : slice.length === 0 ? <div className="sn-empty">{t("noResults")}</div>
         : slice.map(j => <JRow key={j.id} j={j} />)}
       {pages > 1 && !waiting && (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "var(--s4)" }}>
-          <Pagination page={p + 1} totalPages={pages} totalItems={list.length} pageSize={pageSize}
-            onChange={pg => { setPage(pg - 1); window.scrollTo(0, 0); }} />
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <button onClick={() => { setPage(p - 1); window.scrollTo(0, 0); }} disabled={p <= 1}
+            className="rounded-lg border border-border bg-surface px-4 py-2 text-sm disabled:opacity-40 hover:border-primary">←</button>
+          <span className="text-sm text-muted-foreground">{p + 1} / {pages}</span>
+          <button onClick={() => { setPage(p + 1); window.scrollTo(0, 0); }} disabled={p >= pages - 1}
+            className="rounded-lg border border-border bg-surface px-4 py-2 text-sm disabled:opacity-40 hover:border-primary">→</button>
         </div>
       )}
     </div>
