@@ -29,25 +29,65 @@ document.getElementById("langToggle").addEventListener("click", () => {
 });
 
 /* ---------- data load ---------- */
+const DOCS = []; // id -> doc id lookup for the compact search index
+
+async function fetchJSON(url, tries = 3, timeoutMs = 25000) {
+  for (let attempt = 1; attempt <= tries; attempt++) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+    try {
+      const r = await fetch(url + "?t=" + Date.now(), { signal: ctrl.signal });
+      if (!r.ok) throw new Error(url + " -> HTTP " + r.status);
+      return await r.json();
+    } catch (err) {
+      if (attempt === tries) throw new Error(url + " (" + (err.name === "AbortError" ? "timeout" : err.message) + ")");
+      await new Promise(res => setTimeout(res, 1200 * attempt)); // back-off, then retry
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+}
+
 async function ensureData() {
   if (state.judgements) return;
-  const load = u => fetch(u + "?t=" + Date.now()).then(r => { if (!r.ok) throw new Error(u + " -> " + r.status); return r.json(); });
-  [state.judgements, state.index, state.sections, state.misroutes, state.timeline] = await Promise.all([
-    load("data/judgements.json"), load("data/search-index.json"),
-    load("data/sections.json"), load("data/misroutes.json"), load("data/gr-timeline.json"),
+  const setProgress = msg => {
+    const el = document.getElementById("loadmsg");
+    if (el) el.textContent = state.lang === "mr" ? LOADING_MR[msg] || msg : msg;
+  };
+  // Phase 1: everything the first paint needs (small + one medium file)
+  setProgress("judgements");
+  [state.judgements, state.sections, state.misroutes] = await Promise.all([
+    fetchJSON("data/judgements.json"),
+    fetchJSON("data/sections.json"),
+    fetchJSON("data/misroutes.json"),
   ]);
+  state.judgements.forEach(j => DOCS.push(j.id));
+
+  // Phase 2 (background, non-blocking): the heavy search index + timeline
+  state.searchIndexReady = fetchJSON("data/search-index.json")
+    .then(idx => { state.index = idx; })
+    .catch(() => { state.indexFailed = true; });
+  fetchJSON("data/gr-timeline.json").then(tl => { state.timeline = tl; }).catch(() => {});
+}
+const LOADING_MR = { "judgements": "निकाल लोड होत आहे…", "search": "शोध-निर्देशिका लोड होत आहे…" };
+
+async function ensureSearchIndex() {
+  if (state.index || state.indexFailed) return;
+  if (state.searchIndexReady) await state.searchIndexReady;
+  else await new Promise(r => setTimeout(r, 300)); // phase-2 not started yet — yield and retry
 }
 
 /* ---------- search ---------- */
 function searchIds(q) {
   q = (q || "").trim().toLowerCase();
-  if (!q) return null;
+  if (!q || !state.index) return null;
   const toks = q.split(/\s+/).map(x => x.replace(/[^\w\u0900-\u097F]/g, "")).filter(x => x.length > 1);
   if (!toks.length) return null;
   const sets = toks.map(tok => {
     const ids = new Set();
     for (const key in state.index) {
-      if (key.startsWith(tok) || tok.startsWith(key)) for (const id of state.index[key]) ids.add(id);
+      if (key.startsWith(tok) || tok.startsWith(key))
+        for (const i of state.index[key]) ids.add(DOCS[i]);
     }
     return ids;
   });
@@ -195,6 +235,12 @@ function viewJudgements(qstr) {
   renderList(true);
 }
 function renderList(full) {
+  // The heavy search index loads in the background; if a query arrives first, wait for it.
+  if (state.filters.q.trim() && !state.index && !state.indexFailed) {
+    document.getElementById("results").innerHTML = `<div class="empty">${t("Loading search index…","शोध-निर्देशिका लोड होत आहे…")}</div>`;
+    setTimeout(() => ensureSearchIndex().then(() => renderList(false)), 300);
+    return;
+  }
   const mr = checkMisroute(state.filters.q);
   const list = filtered();
   const pages = Math.max(1, Math.ceil(list.length / state.pageSize));
@@ -302,6 +348,13 @@ function viewDetail(id) {
 
 /* ---------- timeline ---------- */
 function viewTimeline() {
+  if (!state.timeline) {
+    $view.innerHTML = `<div class="loading">${t("Loading…","लोड होत आहे…")}</div>`;
+    ensureData().then(() => fetchJSON("data/gr-timeline.json")).then(tl => { state.timeline = tl; viewTimeline(); }).catch(e => {
+      $view.innerHTML = `<div class="empty">${t("Failed to load timeline:","टाइमलाइन लोड अयशस्वी:")} ${esc(e.message)}</div>`;
+    });
+    return;
+  }
   $view.innerHTML = `
     <h2 class="viewtitle">${t("Redevelopment law timeline — 1991 → today","पुनर्विकास विधी — १९९१ → आज")}<span class="mr">${t("Every instrument your society's redevelopment runs on, with official documents","संस्थेच्या पुनर्विकासाची प्रत्येक वैधानिक साधन, अधिकृत दस्तऐवजांसह")}</span></h2>
     <div class="tl">
@@ -364,7 +417,8 @@ function route() {
   const sub = bare.includes("/") ? bare.slice(bare.indexOf("/") + 1) : "";
 
   if (!state.judgements) {
-    $view.innerHTML = `<div class="loading">${t("Loading…","लोड होत आहे…")}</div>`;
+    $view.innerHTML = `<div class="loading">${t("Loading…","लोड होत आहे…")} <span id="loadmsg"></span>
+      <div style="margin-top:10px"><button onclick="location.reload()" style="padding:8px 16px;border-radius:8px;border:1px solid var(--line);background:var(--card);cursor:pointer">${t("Retry","पुन्हा प्रयत्न")}</button></div></div>`;
   }
   ensureData().then(() => {
     document.querySelectorAll("[data-nav]").forEach(a =>
@@ -380,7 +434,8 @@ function route() {
     }
     window.scrollTo(0, 0);
   }).catch(err => {
-    $view.innerHTML = `<div class="empty">${t("Failed to load data:","माहिती लोड अयशस्वी:")} ${esc(err.message)}</div>`;
+    $view.innerHTML = `<div class="empty"><p>${t("Failed to load data:","माहिती लोड अयशस्वी:")}<br>${esc(err.message)}</p>
+      <button onclick="location.reload()" style="padding:10px 20px;border-radius:8px;border:none;background:var(--maroon);color:#fff;font-weight:700;cursor:pointer">${t("Retry","पुन्हा प्रयत्न करा")}</button></div>`;
   });
 }
 window.addEventListener("hashchange", route);
