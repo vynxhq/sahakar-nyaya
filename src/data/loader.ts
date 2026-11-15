@@ -131,16 +131,18 @@ const searchIndexReady: { p: Promise<void> | null } = { p: null };
 /** Phase 1 — everything needed for first paint. */
 export async function loadCore(): Promise<void> {
   if (store.lite) return;
-  const [lite, sectionsJson, misroutes] = await Promise.all([
+  const [lite, sectionsJson, misroutes, topicsIdx] = await Promise.all([
     fetchJSON<{ judgements: JudgementLite[]; top5: string[] }>("data/index-lite.json"),
     fetchJSON<{ sections: SectionInfo[]; top5: string[] }>("data/sections.json"),
     fetchJSON<Misroute[]>("data/misroutes.json"),
+    fetchJSON<TopicsIndex>("data/topics/index.json"),
   ]);
   store.lite = lite.judgements;
   fillDocOrder(store.lite);
   store.top5 = lite.top5 ?? sectionsJson.top5;
   store.sections = sectionsJson.sections;
   store.misroutes = misroutes;
+  store.topicsIndex = topicsIdx;
 }
 
 /** Phase 2 — heavy assets, background. Safe to call repeatedly. */

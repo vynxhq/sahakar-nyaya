@@ -1,45 +1,62 @@
 import { useEffect, useState } from "react";
-import { TopNav, Button, AppShell } from "@astryxdesign/core";
-import { Scale, X, Home, Compass, BookOpen, Gavel, History, Info } from "lucide-react";
+import { Scale, Search, X } from "lucide-react";
 import { stoneTheme } from "./theme/sahakarTheme";
 import { Theme } from "@astryxdesign/core/theme";
 import { LangContext, initLangFromStorage, type LangCtx } from "./state/lang";
 import { catalog, tr, type CatalogKey, type Lang } from "./i18n/catalogs";
-import { loadCore, warmHeavy, store } from "./data/loader";
-import {
-  viewHome, viewSections, JudgementsView, DetailView, viewTimeline, viewAbout,
-  TopicsDirectoryView, TopicPageView,
-} from "./views";
+import { loadCore, loadTopic, warmHeavy, store, type Topic } from "./data/loader";
+import { Palette, usePaletteShortcut } from "./components/Palette";
+import { Rail, WelcomeDoc, TopicDoc } from "./views/Desk";
+import { JudgementsView, JudgementDoc } from "./views/Judgements";
+import { BrowseView } from "./views/Browse";
+import { TimelineDoc, ReferenceDoc, AboutDoc } from "./views/Docs";
 
-function parseHash(): { path: string; sub: string; qstr: string; anchor: string } {
+function parseHash(): { path: string; sub: string; qstr: string } {
   let h = location.hash.replace(/^#\/?/, "");
-  const aIdx = h.indexOf("#");
-  const anchor = aIdx >= 0 ? h.slice(aIdx + 1) : "";
-  if (aIdx >= 0) h = h.slice(0, aIdx);
   const qIdx = h.indexOf("?");
   const qstr = qIdx >= 0 ? h.slice(qIdx + 1) : "";
   const bare = qIdx >= 0 ? h.slice(0, qIdx) : h;
-  const path = bare.split("/")[0] || "home";
+  const path = bare.split("/")[0] || "desk";
   const sub = bare.includes("/") ? bare.slice(bare.indexOf("/") + 1) : "";
-  return { path, sub, qstr, anchor };
+  return { path, sub, qstr };
 }
 
-const NAV: Array<[string, CatalogKey, React.ComponentType<{ size?: number | string }>]> = [
-  ["#/", "home", Home],
-  ["#/topics", "topics", Compass],
-  ["#/sections", "sections", BookOpen],
-  ["#/judgements", "judgements", Gavel],
-  ["#/timeline", "timeline", History],
-  ["#/about", "about", Info],
-];
+type View =
+  | { name: "desk"; slug: string | null; role: string }
+  | { name: "browse" }
+  | { name: "judgements"; qstr: string }
+  | { name: "j"; id: string }
+  | { name: "timeline" }
+  | { name: "reference"; anchor: string }
+  | { name: "about" };
+
+function viewFromHash(): View {
+  const { path, sub, qstr } = parseHash();
+  switch (path) {
+    case "": case "desk": case "t": {
+      const params = new URLSearchParams(qstr);
+      return { name: "desk", slug: path === "t" ? decodeURIComponent(sub) : null, role: params.get("role") ?? "member" };
+    }
+    case "browse": return { name: "browse" };
+    case "judgements": return { name: "judgements", qstr };
+    case "j": return { name: "j", id: decodeURIComponent(sub) };
+    case "timeline": return { name: "timeline" };
+    case "reference": return { name: "reference", anchor: decodeURIComponent(sub) };
+    case "about": return { name: "about" };
+    default: return { name: "desk", slug: null, role: "member" };
+  }
+}
 
 export default function App() {
   const [lang, setLangState] = useState<Lang>(initLangFromStorage());
   const [ready, setReady] = useState(store.lite != null);
   const [error, setError] = useState<string | null>(null);
   const [pillOpen, setPillOpen] = useState(true);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const [, force] = useState(0);
-  const [route, setRoute] = useState(parseHash());
+  const [view, setView] = useState<View>(viewFromHash());
+  const [guideCategory, setGuideCategory] = useState<string>("");
+  const [guideRole, setGuideRole] = useState<string>("member");
 
   const setLang = (l: Lang) => {
     localStorage.setItem("sn_lang", l);
@@ -49,7 +66,7 @@ export default function App() {
 
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
   useEffect(() => {
-    const onHash = () => setRoute(parseHash());
+    const onHash = () => setView(viewFromHash());
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
@@ -60,83 +77,102 @@ export default function App() {
       .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
   }, [ready]);
   useEffect(() => {
-    const iv = setInterval(() => force(x => x + 1), 1500);
+    const iv = setInterval(() => force(x => x + 1), 1200);
     return () => clearInterval(iv);
   }, []);
+  usePaletteShortcut(setPaletteOpen);
 
   const t = (key: CatalogKey) => tr(lang, key);
 
-  let body: React.ReactNode;
+  let pane: React.ReactNode;
   if (error) {
-    body = (
+    pane = (
       <div className="sn-empty">
         <p>{t("failedLoad")}<br />{error}</p>
-        <Button label={t("retry")} variant="primary" onClick={() => { setError(null); location.reload(); }} />
+        <button className="sn-lang-btn" onClick={() => { setError(null); location.reload(); }}>{t("retry")}</button>
       </div>
     );
   } else if (!ready) {
-    body = <div className="sn-empty">{t("loadingJudgements")}</div>;
+    pane = <div className="sn-empty">{t("loadingJudgements")}</div>;
   } else {
-    const { path, sub, qstr, anchor } = route;
-    switch (path) {
-      case "home": body = viewHome(); break;
-      case "topics": body = <TopicsDirectoryView />; break;
-      case "t": body = <TopicPageView slug={decodeURIComponent(sub)} qstr={qstr} />; break;
-      case "sections": body = viewSections(ctx, anchor); break;
-      case "judgements": body = <JudgementsView ctx={ctx} qstr={qstr} />; break;
-      case "j": body = <DetailView ctx={ctx} id={decodeURIComponent(sub)} />; break;
-      case "timeline": body = viewTimeline(ctx); break;
-      case "about": body = viewAbout(ctx); break;
-      default: body = <div className="sn-empty">{t("notFound")}</div>;
+    switch (view.name) {
+      case "desk":
+        pane = view.slug
+          ? <TopicPane slug={view.slug} lang={lang} />
+          : <WelcomeDoc ctx={ctx} />;
+        break;
+      case "browse": pane = <BrowseView ctx={ctx} />; break;
+      case "judgements": pane = <JudgementsView ctx={ctx} qstr={view.qstr} />; break;
+      case "j": pane = <JudgementDoc ctx={ctx} id={view.id} />; break;
+      case "timeline": pane = <TimelineDoc ctx={ctx} />; break;
+      case "reference": pane = <ReferenceDoc ctx={ctx} anchor={view.anchor} />; break;
+      case "about": pane = <AboutDoc ctx={ctx} />; break;
     }
   }
+
+  const deskTopic = view.name === "desk" ? view.slug : null;
+  const deskRole = view.name === "desk" ? view.role : guideRole;
 
   return (
     <LangContext.Provider value={ctx}>
       <Theme theme={stoneTheme} mode="light">
-        <AppShell
-          variant="wash"
-          contentPadding={0}
-          banner={pillOpen ? (
-            <div className="sn-pill">
-              <X size={14} style={{ transform: "rotate(45deg)" }} />
-              <span>{t("banner")}</span>
-              <button onClick={() => setPillOpen(false)} aria-label="dismiss">✕</button>
-            </div>
-          ) : undefined}
-          topNav={
-            <TopNav
-              className="sn-topbar"
-              heading={
-                <a href="#/" className="sn-brand" style={{ textDecoration: "none" }}>
-                  <span className="sn-brand-mark"><Scale size={20} /></span>
-                  <span className="sn-brand-word">
-                    <b>{catalog.appName[lang].split(" · ")[0]}</b>
-                    <span>{catalog.appName[lang]}</span>
-                  </span>
-                </a>
-              }
-              endContent={
-                <Button label={t("switchLang")} variant="primary" size="sm"
-                  onClick={() => setLang(lang === "mr" ? "en" : "mr")} />
-              }
-            >
-              <nav className="sn-topnav">
-                {NAV.map(([href, key, Icon]) => (
-                  <a key={href} href={href} className={route.path === href.replace("#/", "") ? "active" : ""}>
-                    <Icon size={15} />
-                    {t(key)}
-                  </a>
-                ))}
-              </nav>
-            </TopNav>
-          }
-          mobileNav={{ breakpoint: "md" }}
-        >
-          {body}
-          <footer className="sn-footer"><p style={{ margin: 0, maxWidth: 1120, marginInline: "auto" }}>{t("footer")}</p></footer>
-        </AppShell>
+        {pillOpen && (
+          <div className="sn-pill">
+            <X size={14} style={{ transform: "rotate(45deg)" }} />
+            <span>{t("banner")}</span>
+            <button onClick={() => setPillOpen(false)} aria-label="dismiss">✕</button>
+          </div>
+        )}
+        <header className="sn-topbar">
+          <a href="#/" className="sn-brand">
+            <span className="sn-brand-mark"><Scale size={17} /></span>
+            <span className="sn-brand-word">
+              <b>{catalog.appName[lang].split(" · ")[0]}</b>
+              <span>{catalog.appName[lang]}</span>
+            </span>
+          </a>
+          <button className="sn-kbd-trigger" onClick={() => setPaletteOpen(true)}>
+            <Search size={14} />
+            {lang === "mr" ? "शोधा…" : "Search the app…"}
+            <kbd>Ctrl K</kbd>
+          </button>
+          <button className="sn-lang-btn" onClick={() => setLang(lang === "mr" ? "en" : "mr")}>
+            {t("switchLang")}
+          </button>
+        </header>
+
+        <div className="sn-desk">
+          <Rail
+            ctx={ctx}
+            slug={deskTopic}
+            role={deskRole}
+            category={guideCategory}
+            onCategory={c => { setGuideCategory(c); if (deskTopic) location.hash = "#/"; }}
+            onRole={r => setGuideRole(r)}
+            onNavigate={() => {}}
+          />
+          <main className="sn-pane">{pane}</main>
+        </div>
+
+        {paletteOpen && <Palette lang={lang} onClose={() => setPaletteOpen(false)} />}
       </Theme>
     </LangContext.Provider>
   );
+}
+
+function TopicPane({ slug, lang }: { slug: string; lang: Lang }) {
+  const [topic, setTopic] = useState<Topic | null>(store.topics[slug] ?? null);
+  const [missing, setMissing] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    setTopic(store.topics[slug] ?? null);
+    setMissing(false);
+    loadTopic(slug).then(tp => { if (alive) setTopic(tp); }).catch(() => { if (alive) setMissing(true); });
+    return () => { alive = false; };
+  }, [slug]);
+  const t = (key: CatalogKey) => tr(lang, key);
+  const paneCtx: LangCtx = { lang, setLang: () => {}, t };
+  if (missing) return <div className="sn-empty">{t("judgNotFound")}</div>;
+  if (!topic) return <div className="sn-empty">{t("loading")}</div>;
+  return <TopicDoc ctx={paneCtx} topic={topic} />;
 }
