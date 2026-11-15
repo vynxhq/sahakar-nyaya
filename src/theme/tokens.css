@@ -1,0 +1,59 @@
+/* Sahakar Nyaya design tokens — indigo + saffron, light-first.
+   Unlayered so these override Astryx's @layer astryx-theme tokens. */
+
+:root {
+  /* surfaces */
+  --ink: #0f172a;
+  --ink-2: #475569;
+  --paper: #f8f9fc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+
+  /* brand */
+  --primary: #4f46e5;
+  --primary-strong: #4338ca;
+  --primary-deep: #1e1b4b;
+  --saffron: #f59e0b;
+  --saffron-deep: #d97706;
+
+  /* semantic */
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+
+  /* category hues */
+  --hue-redevelopment: #4f46e5;
+  --hue-membership: #0d9488;
+  --hue-committee: #7c3aed;
+  --hue-money: #059669;
+  --hue-records: #d97706;
+  --hue-disputes: #e11d48;
+
+  /* shape + depth */
+  --radius-card: 16px;
+  --radius-control: 12px;
+  --shadow-rest: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-lift: 0 8px 24px rgba(79, 70, 229, 0.12);
+  --shadow-hero: 0 20px 40px rgba(30, 27, 75, 0.25);
+
+  /* fonts */
+  --font-body: "Figtree", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Montserrat", "Noto Sans Devanagari", "Figtree", system-ui, sans-serif;
+
+  /* Astryx overrides (accent family + fonts) */
+  --color-accent: #4f46e5;
+  --color-on-accent: #ffffff;
+  --color-text-accent: #4f46e5;
+  --color-icon-accent: #4f46e5;
+  --color-accent-muted: rgba(79, 70, 229, 0.1);
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-background-body: #f8f9fc;
+  --color-background-card: #ffffff;
+  --color-border: #e2e8f0;
+  --font-family-body: var(--font-body);
+  --font-family-heading: var(--font-heading);
+}
+
+html { color-scheme: light; }
+[data-theme="dark"] { color-scheme: light; }

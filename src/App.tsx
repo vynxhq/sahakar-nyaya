@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { TopNav, Button, Banner, AppShell } from "@astryxdesign/core";
+import { TopNav, Button, AppShell } from "@astryxdesign/core";
+import { Scale, X, Home, Compass, BookOpen, Gavel, History, Info } from "lucide-react";
 import { stoneTheme } from "./theme/sahakarTheme";
 import { Theme } from "@astryxdesign/core/theme";
 import { LangContext, initLangFromStorage, type LangCtx } from "./state/lang";
@@ -23,19 +24,20 @@ function parseHash(): { path: string; sub: string; qstr: string; anchor: string 
   return { path, sub, qstr, anchor };
 }
 
-const NAV: Array<[string, CatalogKey]> = [
-  ["#/", "home"],
-  ["#/topics", "topics"],
-  ["#/sections", "sections"],
-  ["#/judgements", "judgements"],
-  ["#/timeline", "timeline"],
-  ["#/about", "about"],
+const NAV: Array<[string, CatalogKey, React.ComponentType<{ size?: number | string }>]> = [
+  ["#/", "home", Home],
+  ["#/topics", "topics", Compass],
+  ["#/sections", "sections", BookOpen],
+  ["#/judgements", "judgements", Gavel],
+  ["#/timeline", "timeline", History],
+  ["#/about", "about", Info],
 ];
 
 export default function App() {
   const [lang, setLangState] = useState<Lang>(initLangFromStorage());
   const [ready, setReady] = useState(store.lite != null);
   const [error, setError] = useState<string | null>(null);
+  const [pillOpen, setPillOpen] = useState(true);
   const [, force] = useState(0);
   const [route, setRoute] = useState(parseHash());
 
@@ -79,7 +81,7 @@ export default function App() {
     switch (path) {
       case "home": body = viewHome(); break;
       case "topics": body = <TopicsDirectoryView />; break;
-      case "t": body = <TopicPageView ctx={ctx} slug={decodeURIComponent(sub)} qstr={qstr} />; break;
+      case "t": body = <TopicPageView slug={decodeURIComponent(sub)} qstr={qstr} />; break;
       case "sections": body = viewSections(ctx, anchor); break;
       case "judgements": body = <JudgementsView ctx={ctx} qstr={qstr} />; break;
       case "j": body = <DetailView ctx={ctx} id={decodeURIComponent(sub)} />; break;
@@ -91,33 +93,37 @@ export default function App() {
 
   return (
     <LangContext.Provider value={ctx}>
-      <Theme theme={stoneTheme}>
+      <Theme theme={stoneTheme} mode="light">
         <AppShell
           variant="wash"
-          contentPadding={4}
-          banner={
-            <Banner status="warning" title={t("banner")} container="section" elevation="none" />
-          }
+          contentPadding={0}
+          banner={pillOpen ? (
+            <div className="sn-pill">
+              <X size={14} style={{ transform: "rotate(45deg)" }} />
+              <span>{t("banner")}</span>
+              <button onClick={() => setPillOpen(false)} aria-label="dismiss">✕</button>
+            </div>
+          ) : undefined}
           topNav={
             <TopNav
               heading={
-                <a href="#/" style={{ color: "inherit", textDecoration: "none", display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
-                  <span style={{ fontWeight: 700 }}>{catalog.appName[lang].split(" · ")[0]}</span>
-                  <span style={{ fontSize: "0.72rem", opacity: 0.8 }}>{catalog.appName[lang]}</span>
+                <a href="#/" className="sn-brand" style={{ textDecoration: "none" }}>
+                  <span className="sn-brand-mark"><Scale size={20} /></span>
+                  <span className="sn-brand-word">
+                    <b>{catalog.appName[lang].split(" · ")[0]}</b>
+                    <span>{catalog.appName[lang]}</span>
+                  </span>
                 </a>
               }
               endContent={
-                <Button label={t("switchLang")} variant="secondary" size="sm"
+                <Button label={t("switchLang")} variant="primary" size="sm"
                   onClick={() => setLang(lang === "mr" ? "en" : "mr")} />
               }
             >
-              <nav style={{ display: "flex", gap: 4, flexWrap: "wrap", alignItems: "center" }}>
-                {NAV.map(([href, key]) => (
-                  <a key={href} href={href} style={{
-                    color: "inherit", textDecoration: "none", padding: "6px 10px",
-                    borderRadius: 8, fontSize: "0.9rem",
-                    background: route.path === href.replace("#/", "") ? "var(--color-background-muted)" : undefined,
-                  }}>
+              <nav className="sn-topnav">
+                {NAV.map(([href, key, Icon]) => (
+                  <a key={href} href={href} className={route.path === href.replace("#/", "") ? "active" : ""}>
+                    <Icon size={15} />
                     {t(key)}
                   </a>
                 ))}
@@ -127,7 +133,7 @@ export default function App() {
           mobileNav={{ breakpoint: "md" }}
         >
           {body}
-          <footer className="sn-footer"><p style={{ margin: 0 }}>{t("footer")}</p></footer>
+          <footer className="sn-footer"><p style={{ margin: 0, maxWidth: 1120, marginInline: "auto" }}>{t("footer")}</p></footer>
         </AppShell>
       </Theme>
     </LangContext.Provider>

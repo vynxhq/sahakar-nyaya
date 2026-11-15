@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Heading, Text, Card, Pagination } from "@astryxdesign/core";
+import { Calendar, Landmark, User, Hash, FileText, ArrowLeft, Download } from "lucide-react";
 import type { LangCtx } from "../state/lang";
 import {
   store, loadHeadnotes, ensureSearchIndex, searchIds, checkMisroute,
@@ -12,6 +13,7 @@ export function useHeadnote(id: string, year: string): { hn: Headnotes[string] |
   const [hn, setHn] = useState<Headnotes[string] | null>(null);
   const [missing, setMissing] = useState(false);
   useEffect(() => {
+    if (!id) return;
     let alive = true;
     loadHeadnotes(year)
       .then(chunk => { if (alive) setHn(chunk[id] ?? null); })
@@ -66,7 +68,7 @@ export function viewSections(ctx: LangCtx, anchor: string): React.ReactNode {
         {sections.map(s => (
           <Card key={s.id}>
             <a href={`#/sections#${s.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-              <Heading level={3} style={{ color: "var(--sn-maroon)", margin: 0 }}>{s.title}</Heading>
+              <Heading level={3} style={{ color: "var(--primary)", margin: 0 }}>{s.title}</Heading>
               <Text style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>{s.titleMr}</Text>
               <Text style={{ fontSize: "0.88rem" }}>{(ctx.lang === "mr" ? s.summaryMr : s.summary).slice(0, 200)}…</Text>
             </a>
@@ -82,16 +84,16 @@ function sectionDetail(ctx: LangCtx, s: import("../data/loader").SectionInfo): R
   const disp = ctx.lang === "mr" && s.disputesMr ? s.disputesMr! : s.disputes;
   return (
     <Card>
-      <Heading level={2} style={{ color: "var(--sn-maroon)", margin: 0 }}>{s.title}</Heading>
+      <Heading level={2} style={{ color: "var(--primary)", margin: 0 }}>{s.title}</Heading>
       <Text style={{ color: "var(--color-text-secondary)" }}>{s.titleMr}</Text>
       <Text>{ctx.lang === "mr" ? s.summaryMr : s.summary}</Text>
       <Heading level={4} style={{ margin: "14px 0 6px" }}>{t("typicalDisputes")}</Heading>
       <ul>{disp.map((d, i) => <li key={i}>{d}</li>)}</ul>
       <Heading level={4} style={{ margin: "14px 0 6px" }}>{t("whoAsks")}</Heading>
       <div style={{ display: "grid", gap: 8, fontSize: "0.9rem" }}>
-        {s.ask?.memberPro && <div><b style={{ color: "var(--sn-maroon)" }}>{t("memberPro")}</b> {s.ask.memberPro}</div>}
-        {s.ask?.memberAnti && <div><b style={{ color: "var(--sn-maroon)" }}>{t("memberAnti")}</b> {s.ask.memberAnti}</div>}
-        {s.ask?.committee && <div><b style={{ color: "var(--sn-maroon)" }}>{t("committee")}</b> {s.ask.committee}</div>}
+        {s.ask?.memberPro && <div><b style={{ color: "var(--primary)" }}>{t("memberPro")}</b> {s.ask.memberPro}</div>}
+        {s.ask?.memberAnti && <div><b style={{ color: "var(--primary)" }}>{t("memberAnti")}</b> {s.ask.memberAnti}</div>}
+        {s.ask?.committee && <div><b style={{ color: "var(--primary)" }}>{t("committee")}</b> {s.ask.committee}</div>}
       </div>
       {s.landmarks && s.landmarks.length > 0 && (
         <>
@@ -193,7 +195,7 @@ export function JudgementsView({ ctx, qstr }: { ctx: LangCtx; qstr: string }): R
       ) : slice.length === 0 ? (
         <div className="sn-empty">{t("noResults")}</div>
       ) : (
-        slice.map(j => <JCard key={j.id} j={j} t={t} />)
+        slice.map(j => <JCard key={j.id} j={j} t={t} lang={ctx.lang} />)
       )}
       {pages > 1 && !waiting && (
         <div style={{ display: "flex", justifyContent: "center", margin: "16px 0" }}>
@@ -205,14 +207,14 @@ export function JudgementsView({ ctx, qstr }: { ctx: LangCtx; qstr: string }): R
   );
 }
 
-function JCard({ j, t }: { j: JudgementLite; t: LangCtx["t"] }) {
+function JCard({ j, t, lang }: { j: JudgementLite; t: LangCtx["t"]; lang: string }) {
   const { hn, missing } = useHeadnote(j.id, j.year);
   return (
     <Card style={{ marginBottom: 10 }} className="sn-jcard">
       <div className="sn-meta">
-        <span>📅 {j.date}</span><span>🏛 {j.benchName}</span>
-        {j.judge && <span>👨‍⚖️ {j.judge}</span>}
-        <span>{t("judgements") === "निकाल" ? "सीएनआर" : "CNR"}: {j.cnr}</span>
+        <span><Calendar size={13} /> {j.date}</span><span><Landmark size={13} /> {j.benchName}</span>
+        {j.judge && <span><User size={13} /> {j.judge}</span>}
+        <span><Hash size={13} /> {lang === "mr" ? "सीएनआर" : "CNR"}: {j.cnr}</span>
       </div>
       <Heading level={3} style={{ margin: "0 0 6px", fontSize: "0.98rem" }}>
         <a href={`#/j/${encodeURIComponent(j.id)}`} style={{ textDecoration: "none", color: "inherit" }}>
@@ -236,40 +238,35 @@ export function DetailView({ ctx, id }: { ctx: LangCtx; id: string }): React.Rea
   const { t } = ctx;
   const lite = store.lite!;
   const j = lite.find(x => x.id === id);
+  const { hn } = useHeadnote(j?.id ?? "", j?.year ?? "");
   if (!j) return <div className="sn-empty">{t("judgNotFound")}</div>;
-  const { hn } = useHeadnote(j.id, j.year);
   return (
     <>
-      <Card style={{ marginBottom: 12 }}>
-        <Heading level={2} style={{ margin: 0, color: "var(--sn-maroon)", fontSize: "1.05rem" }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
+        <Heading level={2} style={{ margin: 0, color: "var(--primary)", fontSize: "1.05rem" }}>
           {hn?.title || `CNR ${j.cnr}`}
         </Heading>
         <div className="sn-meta" style={{ margin: "8px 0" }}>
-          <span>📅 {j.date}</span><span>🏛 {j.benchName}</span>
-          {j.judge && <span>👨‍⚖️ {j.judge}</span>}
-          <span>{ctx.lang === "mr" ? "सीएनआर" : "CNR"}: {j.cnr}</span>
+          <span><Calendar size={13} /> {j.date}</span><span><Landmark size={13} /> {j.benchName}</span>
+          {j.judge && <span><User size={13} /> {j.judge}</span>}
+          <span><Hash size={13} /> {ctx.lang === "mr" ? "सीएनआर" : "CNR"}: {j.cnr}</span>
           <span>{t("outcomes")}: {j.disposition}</span>
           {j.courtDisposal && <span>{t("registry")}: {j.courtDisposal}</span>}
         </div>
-        <div className="actions" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <a href={`pdfs/${j.file}`} target="_blank" rel="noopener"
-            style={{ background: "var(--sn-maroon)", color: "#fff", padding: "9px 14px", borderRadius: 8, textDecoration: "none", fontSize: "0.88rem" }}>
-            📄 {t("openPdf")}
-          </a>
-          <a href="#/judgements" style={{ background: "var(--sn-gold)", color: "#fff", padding: "9px 14px", borderRadius: 8, textDecoration: "none", fontSize: "0.88rem" }}>
-            ← {t("backToResults")}
-          </a>
+        <div className="sn-actions">
+          <a href={`pdfs/${j.file}`} target="_blank" rel="noopener"><FileText size={15} /> {t("openPdf")}</a>
+          <a href="#/judgements" className="sn-gold"><ArrowLeft size={15} /> {t("backToResults")}</a>
         </div>
       </Card>
-      <Card style={{ marginBottom: 12 }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
         <Heading level={4} style={{ margin: 0 }}>{t("headnoteTitle")}</Heading>
-        <span style={{ fontSize: "0.72rem", color: "var(--sn-maroon)", fontWeight: 600 }}>
+        <span style={{ fontSize: "0.72rem", color: "var(--primary)", fontWeight: 600 }}>
           ⚠ {t("aiLabel")}{j.needsReview ? ` · ${t("needsReview")}` : ""}
         </span>
         <HeadnoteBlock j={j} />
       </Card>
       {(j.sections.length > 0 || Object.keys(j.oldMap).length > 0) && (
-        <Card style={{ marginBottom: 12 }}>
+        <Card style={{ marginBottom: 14 }} className="sn-panel">
           <Heading level={4} style={{ margin: 0 }}>{t("sectionsHeading")}</Heading>
           <div className="sn-tagrow">
             {j.sections.map(s => (
@@ -290,19 +287,16 @@ export function DetailView({ ctx, id }: { ctx: LangCtx; id: string }): React.Rea
         </Card>
       )}
       {j.parties.length > 0 && (
-        <Card style={{ marginBottom: 12 }}>
+        <Card style={{ marginBottom: 14 }} className="sn-panel">
           <Heading level={4} style={{ margin: 0 }}>{t("partiesHeading")}</Heading>
           <div className="sn-tagrow">{j.parties.map(p => <span key={p} style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 6, background: "var(--color-background-muted)", border: "1px solid var(--color-border)" }}>{p}</span>)}</div>
         </Card>
       )}
-      <Card style={{ marginBottom: 12 }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
         <Heading level={4} style={{ margin: 0 }}>{t("readOriginal")}</Heading>
         <iframe className="sn-pdfbox" src={`pdfs/${j.file}`} title="judgement PDF" />
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
-          <a href={`pdfs/${j.file}`} download={j.file}
-            style={{ background: "var(--sn-maroon)", color: "#fff", padding: "9px 14px", borderRadius: 8, textDecoration: "none", fontSize: "0.88rem" }}>
-            ⬇ {t("downloadPdf")}
-          </a>
+        <div className="sn-actions">
+          <a href={`pdfs/${j.file}`} download={j.file}><Download size={15} /> {t("downloadPdf")}</a>
         </div>
       </Card>
     </>
@@ -346,11 +340,11 @@ export function viewAbout(ctx: LangCtx): React.ReactNode {
   return (
     <>
       <Heading level={2} style={{ margin: "6px 0 12px" }}>{t("about")}</Heading>
-      <Card style={{ marginBottom: 12 }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
         <Heading level={3} style={{ margin: 0 }}>{t("idea")}</Heading>
         <Text>{t("ideaBody")}</Text>
       </Card>
-      <Card style={{ marginBottom: 12 }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
         <Heading level={3} style={{ margin: 0 }}>{t("dataFrom")}</Heading>
         <ul>
           <li>{t("srcJudgements")} <i>Indian High Court Judgments</i> {t("srcDataset")}</li>
@@ -358,7 +352,7 @@ export function viewAbout(ctx: LangCtx): React.ReactNode {
           <li>{t("srcTaxonomy")}</li>
         </ul>
       </Card>
-      <Card style={{ marginBottom: 12 }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
         <Heading level={3} style={{ margin: 0 }}>{t("misrouteCorrector")}</Heading>
         <Text>{t("misrouteBody")}</Text>
         <div className="sn-tagrow">
@@ -370,7 +364,7 @@ export function viewAbout(ctx: LangCtx): React.ReactNode {
           ))}
         </div>
       </Card>
-      <Card style={{ marginBottom: 12 }}>
+      <Card style={{ marginBottom: 14 }} className="sn-panel">
         <Heading level={3} style={{ margin: 0 }}>{t("limitations")}</Heading>
         <ul>
           <li>{t("lim1")}</li>

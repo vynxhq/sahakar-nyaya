@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Heading, Text, Card, Grid, Stack, Button, Stepper, Step, Selector, Badge, Banner } from "@astryxdesign/core";
+import { CheckCircle2, Building2, Users, Wallet, Home as HomeIcon, FolderOpen, Scale } from "lucide-react";
 import { useLang } from "../state/lang";
 import { loadTopicsIndex, loadTopic, loadHeadnotes, type TopicsIndex, type Topic } from "../data/loader";
 
@@ -10,19 +11,40 @@ export function viewHome(): React.ReactNode {
   void loadTopicsIndex().catch(() => {});
   return (
     <>
-      <Card style={{ borderRadius: 16, marginBottom: 18 }}>
-        <Heading level={1} style={{ margin: 0 }}>
-          {t("heroTitle")}
-          <span style={{ display: "block", fontSize: "1.1rem", fontWeight: 600, opacity: 0.9, marginTop: 4 }}>{t("heroSub")}</span>
-        </Heading>
-        <Text style={{ marginTop: 8 }}>{t("heroPara")}</Text>
-      </Card>
+      <div className="sn-hero">
+        <h1>{t("heroTitle")}<span className="sn-hero-sub"><span className="saffron">{t("heroSub")}</span></span></h1>
+        <p className="sn-hero-para">{t("heroPara")}</p>
+        <div className="sn-searchcard">
+          <div className="sn-searchbox">
+            <input placeholder={t("searchPlaceholder")} onKeyDown={e => { if (e.key === "Enter") location.hash = `#/judgements?q=${encodeURIComponent((e.target as HTMLInputElement).value)}`; }} />
+            <button type="button">{t("search")}</button>
+          </div>
+        </div>
+      </div>
       <WizardHome />
       <Heading level={2} style={{ margin: "18px 0 4px" }}>{t("essentials")}</Heading>
       <Text style={{ color: "var(--color-text-secondary)", marginBottom: 12 }}>{t("essentialsSub")}</Text>
       <SectionCards />
     </>
   );
+}
+
+
+const HUE_BY_CAT: Record<string, string> = {
+  redevelopment: "indigo", committee: "violet", money: "emerald",
+  membership: "teal", records: "amber", disputes: "rose",
+};
+function CatIcon({ id }: { id: string }) {
+  const size = 20;
+  switch (id) {
+    case "redevelopment": return <Building2 size={size} />;
+    case "committee": return <Users size={size} />;
+    case "money": return <Wallet size={size} />;
+    case "membership": return <HomeIcon size={size} />;
+    case "records": return <FolderOpen size={size} />;
+    case "disputes": return <Scale size={size} />;
+    default: return <Building2 size={size} />;
+  }
 }
 
 /* Wizard: category → role → situation → topic */
@@ -45,7 +67,7 @@ function WizardHome(): React.ReactNode {
     <Card style={{ marginBottom: 18 }}>
       <Heading level={2} style={{ margin: 0 }}>{t("topics")}</Heading>
       <Text style={{ color: "var(--color-text-secondary)", marginBottom: 12 }}>{t("topicsSub")}</Text>
-      <Stack gap={2}>
+      <Stack gap={2} className="sn-wizard-stack">
         <Stepper activeStep={step} label={t("topics")}>
           <Step step={0} label={t("stepCategory")} />
           <Step step={1} label={t("stepRole")} />
@@ -53,10 +75,14 @@ function WizardHome(): React.ReactNode {
         </Stepper>
         {!category && (
           cats.length > 0 ? (
-            <Selector label={t("stepCategory")} isLabelHidden
-              placeholder={t("stepCategory")} hasSearch presentation="adaptive"
-              options={cats.map(c => ({ value: c.id, label: lang === "mr" ? c.label_mr : c.label_en }))}
-              onChange={v => setCategory(v ?? "")} />
+            <Grid columns={{ minWidth: 240, repeat: "fill" }} gap={2}>
+              {cats.map(c => (
+                <Card key={c.id} padding={2} style={{ cursor: "pointer" }} onClick={() => setCategory(c.id)}>
+                  <div className={`sn-chip sn-chip-${HUE_BY_CAT[c.id] ?? "indigo"}`}><CatIcon id={c.id} /></div>
+                  <Heading level={3} style={{ margin: 0, fontSize: "1rem" }}>{lang === "mr" ? c.label_mr : c.label_en}</Heading>
+                </Card>
+              ))}
+            </Grid>
           ) : <Text>…</Text>
         )}
         {category && (
@@ -78,9 +104,8 @@ function WizardHome(): React.ReactNode {
           ) : <Banner status="info" title={t("comingSoon")} container="card" />
         )}
         {topicSlug && (
-          <Button label={t("showMe")} variant="primary" href={`#/t/${topicSlug}?role=${role}`}>
-            {t("showMe")} →
-          </Button>
+          <Button label={t("showMe")} variant="primary" href={`#/t/${topicSlug}?role=${role}`} />
+            
         )}
       </Stack>
     </Card>
@@ -143,8 +168,8 @@ export function TopicsDirectoryView(): React.ReactNode {
 
 /* ---------- Topic page (mediation template) ---------- */
 
-export function TopicPageView({ ctx, slug, qstr }: { ctx: ReturnType<typeof useLang>; slug: string; qstr: string }): React.ReactNode {
-  const { t, lang } = ctx;
+export function TopicPageView({ slug, qstr }: { slug: string; qstr: string }): React.ReactNode {
+  const { t, lang } = useLang();
   const [topic, setTopic] = useState<Topic | null>(null);
   const [missing, setMissing] = useState(false);
   useEffect(() => {
@@ -170,10 +195,10 @@ export function TopicPageView({ ctx, slug, qstr }: { ctx: ReturnType<typeof useL
         <Banner status="info" title={topic.roleFraming.member_en} description={topic.roleFraming.member_mr} container="section" elevation="none" />
       )}
 
-      <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("disputeATitle")}</Heading>
-      <Card>{bLang(topic.disputeA_en, topic.disputeA_mr)}</Card>
-      <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("disputeBTitle")}</Heading>
-      <Card>{bLang(topic.disputeB_en, topic.disputeB_mr)}</Card>
+      <div className="sn-outcome sn-outcome-a">{t("disputeATitle")}</div>
+      <Card style={{ marginBottom: 12 }}>{bLang(topic.disputeA_en, topic.disputeA_mr)}</Card>
+      <div className="sn-outcome sn-outcome-b">{t("disputeBTitle")}</div>
+      <Card style={{ marginBottom: 12 }}>{bLang(topic.disputeB_en, topic.disputeB_mr)}</Card>
 
       <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("lawSays")}</Heading>
       <Card>
@@ -188,11 +213,10 @@ export function TopicPageView({ ctx, slug, qstr }: { ctx: ReturnType<typeof useL
 
       <CourtsHeld topic={topic} />
 
-      <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("settledTitle")}</Heading>
-      <Banner status="success" title={t("aiLabelShort")} container="card"
-        description={bLang(topic.settled_en, topic.settled_mr)}>
-        {bLang(topic.settled_en, topic.settled_mr)}
-      </Banner>
+      <div className="sn-settled">
+        <div className="sn-settled-mark"><CheckCircle2 size={17} /> {t("settledTitle")}<span className="sn-settled-ai">{t("aiLabelShort")}</span></div>
+        <Text>{bLang(topic.settled_en, topic.settled_mr)}</Text>
+      </div>
 
       <Heading level={3} style={{ margin: "16px 0 8px" }}>{t("nextStepsTitle")}</Heading>
       <Grid columns={{ minWidth: 280, repeat: "fill" }} gap={2}>
@@ -258,7 +282,7 @@ function CourtsHeld({ topic }: { topic: Topic }): React.ReactNode {
       <Text style={{ color: "var(--color-text-secondary)", marginBottom: 12 }}>{t("courtsHeldSub")}</Text>
       {groups.map(([label, ids]) => ids.length === 0 ? null : (
         <Card key={label} style={{ marginBottom: 12 }}>
-          <Badge label={label} />
+          <span className={label === t("courtsA") ? "sn-outcome sn-outcome-a" : label === t("courtsB") ? "sn-outcome sn-outcome-b" : "sn-outcome sn-outcome-c"}>{label}</span>
           <div style={{ marginTop: 8 }}>
             {ids.map(id => {
               const hn = chunks[id];
