@@ -1,99 +1,56 @@
-/* Sahakar Nyaya — brand overrides + app-specific styles.
-   Unlayered rules intentionally override Astryx's @layer astryx-theme tokens. */
+/* Sahakar Nyaya v3 — minimal app-specific styles.
+   Look & feel comes from Astryx Stone as designed. */
 
-/* Devanagari + Latin font stacks (fontsource imports happen in main.tsx) */
+/* Devanagari fallback chain (fontsource imports in main.tsx) */
 :root {
-  --sn-maroon: #7a1f2b;
-  --sn-maroon-dark: #8e2836;
-  --sn-gold: #b98a2b;
-  --sn-cream: #f6f4ef;
   --font-family-body: "Figtree", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-family-heading: "Montserrat", "Noto Sans Devanagari", "Figtree", system-ui, sans-serif;
 }
 
-[data-astryx-theme] {
-  --color-accent: #7a1f2b;
-  --color-on-accent: #ffffff;
-  --color-text-accent: #7a1f2b;
-  --color-icon-accent: #7a1f2b;
+/* Judgement card extras */
+.sn-meta {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  display: flex; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 6px;
 }
-[data-theme="dark"] [data-astryx-theme],
-[data-astryx-theme][data-theme="dark"] {
-  --color-accent: #a63a4a;
-  --color-on-accent: #ffffff;
-  --color-text-accent: #e8b4bc;
-  --color-icon-accent: #e8b4bc;
-}
-
-/* App shell tweaks */
-.sn-topbar {
-  background: var(--sn-maroon);
-}
-.sn-topbar a,
-.sn-topbar button { color: #fff; }
-
-/* Search box */
-.sn-searchbox { display: flex; gap: 8px; max-width: 640px; }
-
-/* Stats row */
-.sn-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 18px 0; }
-.sn-stat {
-  background: var(--color-background-card, #fff);
-  border: 1px solid var(--color-border, #e5e1d8);
-  border-radius: 12px; padding: 12px 14px; text-align: center;
-}
-.sn-stat b { display: block; font-size: 1.4rem; color: var(--sn-maroon); }
-.sn-stat span { font-size: 0.78rem; color: var(--color-text-secondary, #6b7280); }
-
-/* Section cards */
-.sn-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-
-/* Judgement cards */
-.sn-jcard { margin-bottom: 10px; }
-.sn-meta { font-size: 0.75rem; color: var(--color-text-secondary, #6b7280); display: flex; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 6px; }
 .sn-hnlabel {
-  display: inline-block; font-size: 0.62rem; font-weight: 700; color: var(--sn-maroon);
-  border: 1px solid var(--color-border, #e5e1d8); border-radius: 4px; padding: 0 5px;
-  margin-right: 4px; vertical-align: middle;
+  display: inline-block; font-size: 0.62rem; font-weight: 700;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border); border-radius: 4px;
+  padding: 0 5px; margin-right: 4px; vertical-align: middle;
 }
 .sn-tagrow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.sn-tag-redev { background: #fef2f2; border-color: #fca5a5; color: #991b1b; }
-.sn-tag-nr { background: #fffbeb; border-color: #fcd34d; color: #92400e; }
-.sn-tag-sec { background: #ecfdf5; border-color: #6ee7b7; color: #065f46; }
-
-/* Detail */
-.sn-pdfbox { width: 100%; height: 78vh; border: 1px solid var(--color-border, #e5e1d8); border-radius: 12px; background: #525659; }
+.sn-tag {
+  font-size: 0.72rem; padding: 2px 8px; border-radius: 6px;
+  background: var(--color-background-muted); border: 1px solid var(--color-border);
+  color: var(--color-text-secondary); text-decoration: none;
+}
+.sn-tag-sec {
+  font-size: 0.72rem; padding: 2px 8px; border-radius: 6px;
+  background: var(--color-background-info, var(--color-background-muted));
+  border: 1px solid var(--color-border); color: var(--color-text-info, inherit);
+  text-decoration: none;
+}
+.sn-pdfbox {
+  width: 100%; height: 78vh; border: 1px solid var(--color-border);
+  border-radius: 12px; background: #525659;
+}
 .sn-oldmap { font-size: 0.88rem; margin-top: 10px; }
-.sn-oldmap .arrow { color: var(--color-success, #1e6e4d); font-weight: 700; padding: 0 6px; }
-.sn-oldmap code { background: var(--color-background-muted, #f6f4ef); padding: 2px 6px; border-radius: 4px; }
+.sn-oldmap .arrow { color: var(--color-success); font-weight: 700; padding: 0 6px; }
+.sn-oldmap code { background: var(--color-background-muted); padding: 2px 6px; border-radius: 4px; }
 
-/* Timeline */
-.sn-tl { position: relative; margin: 18px 0 0; padding-left: 22px; border-left: 3px solid var(--sn-maroon); }
+/* Timeline (GR history) */
+.sn-tl { position: relative; margin: 18px 0 0; padding-left: 22px; border-left: 3px solid var(--color-accent); }
 .sn-tl-item { position: relative; margin-bottom: 18px; }
 .sn-tl-item::before {
   content: ""; position: absolute; left: -31px; top: 6px; width: 12px; height: 12px;
-  background: var(--sn-gold); border: 2px solid var(--sn-maroon); border-radius: 50%;
+  background: var(--color-accent); border: 2px solid var(--color-border-emphasized);
+  border-radius: 50%;
 }
-.sn-tl-date { font-size: 0.78rem; color: var(--sn-maroon); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-
-/* Misroute card */
-.sn-misroute {
-  background: #fff7ed; color: #7c2d12; border: 1px solid #fdba74; border-radius: 12px;
-  padding: 14px 16px; margin: 12px 0; font-size: 0.92rem;
-}
-.sn-misroute .fix { color: var(--color-success, #1e6e4d); font-weight: 700; }
-
-/* Banner */
-.sn-banner {
-  background: #fff7ed; color: #7c2d12; border-bottom: 1px solid #fdba74;
-  padding: 7px 16px; font-size: 0.8rem;
+.sn-tl-date {
+  font-size: 0.78rem; color: var(--color-text-secondary);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
 }
 
-/* Misc */
-.sn-empty { text-align: center; color: var(--color-text-secondary, #6b7280); padding: 30px 0; }
-.sn-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-.sn-footer {
-  border-top: 1px solid var(--color-border, #e5e1d8);
-  padding: 14px 16px 20px; font-size: 0.72rem; color: var(--color-text-secondary, #6b7280);
-  background: var(--color-background-card, #fff);
-}
+/* Empty / loading */
+.sn-empty { text-align: center; color: var(--color-text-secondary); padding: 30px 0; }

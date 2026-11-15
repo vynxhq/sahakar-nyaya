@@ -76,6 +76,37 @@ export async function fetchJSON<T>(url: string, tries = 3, timeoutMs = 25000): P
 
 /* ----- store ----- */
 
+
+export interface TopicIndexEntry {
+  slug: string;
+  category: string;
+  title_en: string;
+  title_mr: string;
+  redev: boolean;
+  sections: string[];
+}
+export interface TopicsIndex { topics: TopicIndexEntry[]; categories: { id: string; label_en: string; label_mr: string; icon: string; situations: { label_en: string; label_mr: string; slug: string }[] }[] }
+
+export interface Topic {
+  slug: string;
+  category: string;
+  title_en: string;
+  title_mr: string;
+  roleFraming: { member_en: string; member_mr: string; committee_en: string; committee_mr: string };
+  disputeA_en: string; disputeA_mr: string;
+  disputeB_en: string; disputeB_mr: string;
+  lawSummary_en: string; lawSummary_mr: string;
+  grRefs: string[];
+  settled_en: string; settled_mr: string;
+  settledConfidence: string;
+  nextSteps: { member_en: string[]; member_mr: string[]; committee_en: string[]; committee_mr: string[] };
+  sections: string[];
+  redev: boolean;
+  judgementIds: string[];
+  holdGroups: { a: string[]; b: string[]; conditions: string[] };
+  relatedTopics: string[];
+}
+
 export interface Store {
   lite: JudgementLite[] | null;
   sections: SectionInfo[] | null;
@@ -85,11 +116,14 @@ export interface Store {
   headnotes: Record<string, Headnotes>; // year -> chunk
   searchIndex: Record<string, number[]> | null;
   searchIndexFailed: boolean;
+  topicsIndex: TopicsIndex | null;
+  topics: Record<string, Topic>;
 }
 
 export const store: Store = {
   lite: null, sections: null, top5: null, misroutes: null, timeline: null,
   headnotes: {}, searchIndex: null, searchIndexFailed: false,
+  topicsIndex: null, topics: {},
 };
 
 const searchIndexReady: { p: Promise<void> | null } = { p: null };
@@ -186,4 +220,20 @@ export function checkMisroute(q: string, misroutes: Misroute[] | null): Misroute
   if (!u || !misroutes) return null;
   for (const m of misroutes) if (u.includes(m.wrong.toUpperCase())) return m;
   return null;
+}
+
+/* ----- topics ----- */
+
+export async function loadTopicsIndex(): Promise<TopicsIndex> {
+  if (store.topicsIndex) return store.topicsIndex;
+  const idx = await fetchJSON<TopicsIndex>("data/topics/index.json");
+  store.topicsIndex = idx;
+  return idx;
+}
+
+export async function loadTopic(slug: string): Promise<Topic> {
+  if (store.topics[slug]) return store.topics[slug];
+  const topic = await fetchJSON<Topic>(`data/topics/${slug}.json`);
+  store.topics[slug] = topic;
+  return topic;
 }

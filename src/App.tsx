@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { TopNav, Button } from "@astryxdesign/core";
+import { TopNav, Button, Banner, AppShell } from "@astryxdesign/core";
 import { stoneTheme } from "./theme/sahakarTheme";
 import { Theme } from "@astryxdesign/core/theme";
 import { LangContext, initLangFromStorage, type LangCtx } from "./state/lang";
 import { catalog, tr, type CatalogKey, type Lang } from "./i18n/catalogs";
 import { loadCore, warmHeavy, store } from "./data/loader";
-import { viewHome, viewSections, JudgementsView, DetailView, viewTimeline, viewAbout } from "./views";
+import {
+  viewHome, viewSections, JudgementsView, DetailView, viewTimeline, viewAbout,
+  TopicsDirectoryView, TopicPageView,
+} from "./views";
 
 function parseHash(): { path: string; sub: string; qstr: string; anchor: string } {
   let h = location.hash.replace(/^#\/?/, "");
@@ -20,44 +23,40 @@ function parseHash(): { path: string; sub: string; qstr: string; anchor: string 
   return { path, sub, qstr, anchor };
 }
 
+const NAV: Array<[string, CatalogKey]> = [
+  ["#/", "home"],
+  ["#/topics", "topics"],
+  ["#/sections", "sections"],
+  ["#/judgements", "judgements"],
+  ["#/timeline", "timeline"],
+  ["#/about", "about"],
+];
+
 export default function App() {
   const [lang, setLangState] = useState<Lang>(initLangFromStorage());
   const [ready, setReady] = useState(store.lite != null);
   const [error, setError] = useState<string | null>(null);
   const [, force] = useState(0);
+  const [route, setRoute] = useState(parseHash());
 
   const setLang = (l: Lang) => {
     localStorage.setItem("sn_lang", l);
     setLangState(l);
   };
-  const ctx: LangCtx = {
-    lang,
-    setLang,
-    t: (key: CatalogKey) => tr(lang, key),
-  };
+  const ctx: LangCtx = { lang, setLang, t: (key: CatalogKey) => tr(lang, key) };
 
-  useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
-
-  const [route, setRoute] = useState(parseHash());
+  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
   useEffect(() => {
     const onHash = () => setRoute(parseHash());
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
-
   useEffect(() => {
     if (ready) return;
     loadCore()
-      .then(() => {
-        setReady(true);
-        warmHeavy();
-      })
+      .then(() => { setReady(true); warmHeavy(); })
       .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
   }, [ready]);
-
-  // re-render on background store updates (headnote chunks, timeline, index)
   useEffect(() => {
     const iv = setInterval(() => force(x => x + 1), 1500);
     return () => clearInterval(iv);
@@ -78,7 +77,9 @@ export default function App() {
   } else {
     const { path, sub, qstr, anchor } = route;
     switch (path) {
-      case "home": body = viewHome(ctx); break;
+      case "home": body = viewHome(); break;
+      case "topics": body = <TopicsDirectoryView />; break;
+      case "t": body = <TopicPageView ctx={ctx} slug={decodeURIComponent(sub)} qstr={qstr} />; break;
       case "sections": body = viewSections(ctx, anchor); break;
       case "judgements": body = <JudgementsView ctx={ctx} qstr={qstr} />; break;
       case "j": body = <DetailView ctx={ctx} id={decodeURIComponent(sub)} />; break;
@@ -88,46 +89,47 @@ export default function App() {
     }
   }
 
-  const navItem = (href: string, key: CatalogKey, active: string) => (
-    <a href={href} style={{ color: "#fff", textDecoration: "none", padding: "6px 10px", borderRadius: 8, fontSize: "0.9rem", background: route.path === active ? "rgba(255,255,255,.16)" : undefined }}>
-      {t(key)}
-    </a>
-  );
-
   return (
     <LangContext.Provider value={ctx}>
-      <Theme theme={stoneTheme} mode={lang === "mr" ? "light" : "light"}>
-        <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "var(--color-background-body)" }}>
-          <TopNav
-            heading={<a href="#/" style={{ color: "#fff", textDecoration: "none", display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
-              <span style={{ fontSize: "1.25rem", fontWeight: 700 }}>{catalog.appName[lang].split(" · ")[0]}</span>
-              <span style={{ fontSize: "0.72rem", opacity: 0.85 }}>{catalog.appName[lang]}</span>
-            </a>}
-            startContent={undefined}
-            endContent={
-              <Button label={t("switchLang")} variant="secondary" size="sm"
-                onClick={() => setLang(lang === "mr" ? "en" : "mr")} />
-            }
-          >
-            <nav style={{ display: "flex", gap: 4, flexWrap: "wrap", alignItems: "center" }}>
-              {navItem("#/", "home", "home")}
-              {navItem("#/sections", "sections", "sections")}
-              {navItem("#/judgements", "judgements", "judgements")}
-              {navItem("#/timeline", "timeline", "timeline")}
-              {navItem("#/about", "about", "about")}
-            </nav>
-          </TopNav>
-          <div className="sn-banner">⚠ {t("banner")}</div>
-          <main style={{ maxWidth: 1080, margin: "0 auto", padding: "20px 16px 48px", width: "100%", flex: 1 }}>
-            {body}
-          </main>
+      <Theme theme={stoneTheme}>
+        <AppShell
+          variant="wash"
+          contentPadding={4}
+          banner={
+            <Banner status="warning" title={t("banner")} container="section" elevation="none" />
+          }
+          topNav={
+            <TopNav
+              heading={
+                <a href="#/" style={{ color: "inherit", textDecoration: "none", display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
+                  <span style={{ fontWeight: 700 }}>{catalog.appName[lang].split(" · ")[0]}</span>
+                  <span style={{ fontSize: "0.72rem", opacity: 0.8 }}>{catalog.appName[lang]}</span>
+                </a>
+              }
+              endContent={
+                <Button label={t("switchLang")} variant="secondary" size="sm"
+                  onClick={() => setLang(lang === "mr" ? "en" : "mr")} />
+              }
+            >
+              <nav style={{ display: "flex", gap: 4, flexWrap: "wrap", alignItems: "center" }}>
+                {NAV.map(([href, key]) => (
+                  <a key={href} href={href} style={{
+                    color: "inherit", textDecoration: "none", padding: "6px 10px",
+                    borderRadius: 8, fontSize: "0.9rem",
+                    background: route.path === href.replace("#/", "") ? "var(--color-background-muted)" : undefined,
+                  }}>
+                    {t(key)}
+                  </a>
+                ))}
+              </nav>
+            </TopNav>
+          }
+          mobileNav={{ breakpoint: "md" }}
+        >
+          {body}
           <footer className="sn-footer"><p style={{ margin: 0 }}>{t("footer")}</p></footer>
-        </div>
+        </AppShell>
       </Theme>
     </LangContext.Provider>
   );
 }
-
-// keep warmHeavy referenced for tree-shaking clarity
-void warmHeavy;
-void store;

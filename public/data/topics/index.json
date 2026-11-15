@@ -1,0 +1,278 @@
+{
+  "topics": [
+    {
+      "slug": "administrator-appointment",
+      "category": "committee",
+      "title_en": "Administrator Appointments (Section 77A): Notice, Time Limits and Powers",
+      "title_mr": "प्रशासक नियुक्ती (कलम ७७क): नोटीस, मुदत व अधिकार",
+      "redev": false,
+      "sections": [
+        "77A",
+        "78",
+        "154B-19",
+        "91"
+      ]
+    },
+    {
+      "slug": "committee-disqualification",
+      "category": "committee",
+      "title_en": "Committee Member Disqualification: Who Loses the Seat and Gets a 5-Year Bar",
+      "title_mr": "समिती सदस्यांची अपात्रता: पद कसे जाते आणि ५ वर्षांची पात्रता बंदी",
+      "redev": false,
+      "sections": [
+        "154B-23",
+        "154B-8",
+        "91",
+        "73CA"
+      ]
+    },
+    {
+      "slug": "developer-delays-completion",
+      "category": "redevelopment",
+      "title_en": "Developer Delays or Stalls the Project: Deadlines, Bank Guarantee and Member Remedies",
+      "title_mr": "विकसक प्रकल्प उशीराने/अडवून करतो: मुदती, बँक गॅरंटी आणि सभासदांचे उपाय",
+      "redev": true,
+      "sections": [
+        "9_Arb",
+        "154B-29",
+        "91",
+        "79A"
+      ]
+    },
+    {
+      "slug": "developer-selection-rights",
+      "category": "redevelopment",
+      "title_en": "Does Being \"Selected\" Give a Developer Rights? LOI, Draft Agreement and the Selection Process",
+      "title_mr": "\"निवडला गेल्यावर\" विकसकाला कायदेशीर हक्क मिळतात का? अभिप्रायपत्र (LOI), मुसद्दत करार आणि निवड प्रक्रिया",
+      "redev": true,
+      "sections": [
+        "79A",
+        "91",
+        "154B-19",
+        "77A"
+      ]
+    },
+    {
+      "slug": "development-agreement-safeguards",
+      "category": "redevelopment",
+      "title_en": "Signing the Development Agreement: Safeguards Before You Commit the Society",
+      "title_mr": "विकास करार करताना: संस्था बांधीस होण्यापूर्वी घ्यावयाची रक्षाबचाव",
+      "redev": true,
+      "sections": [
+        "79A",
+        "154B-1",
+        "9_Arb",
+        "91"
+      ]
+    },
+    {
+      "slug": "documents-not-given",
+      "category": "records",
+      "title_en": "Your Right to Society Records and Copies (Section 154B-8)",
+      "title_mr": "संस्थेच्या दस्तऐवजांचा व नक्कलींचा सभासद हक्क (कलम १५४ब-८)",
+      "redev": false,
+      "sections": [
+        "154B-8",
+        "154B-23"
+      ]
+    },
+    {
+      "slug": "dues-recovery-154b-29",
+      "category": "money",
+      "title_en": "Recovering Society Dues: The Section 154B-29 Recovery Certificate",
+      "title_mr": "संस्थेच्या देयकांची वसुली: कलम १५४ब-२९ चे वसुली प्रमाणपत्र",
+      "redev": false,
+      "sections": [
+        "154B-29",
+        "101"
+      ]
+    },
+    {
+      "slug": "forum-which-court",
+      "category": "disputes",
+      "title_en": "Which Forum? Co-operative Court, Arbitration or Writ Petition",
+      "title_mr": "कोणते न्यायमंच? सहकारी न्यायालय, मध्यस्थी की लेखी याचिका",
+      "redev": false,
+      "sections": [
+        "91",
+        "9_Arb"
+      ]
+    },
+    {
+      "slug": "interim-protection-court-receiver",
+      "category": "redevelopment",
+      "title_en": "Section 9 Interim Protection and the Court Receiver: Who Can Invoke It, Who Cannot",
+      "title_mr": "कलम ९ अंतर्गत अंतरिम संरक्षण आणि कोर्ट रिसीव्हर: कोण मागू शकतो, कोण मागू शकत नाही",
+      "redev": true,
+      "sections": [
+        "9_Arb",
+        "91",
+        "79A"
+      ]
+    },
+    {
+      "slug": "maintenance-charges-disputes",
+      "category": "money",
+      "title_en": "Maintenance and Service Charges: Levy, Non-Payment and 'Penal' Extras",
+      "title_mr": "देखभाल व सेवा देयके: आकारणी, बकेदारी आणि 'दंडात्मक' वसुली",
+      "redev": false,
+      "sections": [
+        "154B-16",
+        "154B-29",
+        "154B-27",
+        "101"
+      ]
+    },
+    {
+      "slug": "member-refuses-to-vacate",
+      "category": "redevelopment",
+      "title_en": "Member Refuses to Vacate: The Duty to Vacate and What Courts Have Done",
+      "title_mr": "सभासद ताबा देण्यास नकार करतो: रिकामा करण्याचे कर्तव्य आणि न्यायालयांनी काय केले आहे",
+      "redev": true,
+      "sections": [
+        "154B-10",
+        "9_Arb",
+        "91",
+        "79A"
+      ]
+    },
+    {
+      "slug": "minority-refuses-redevelopment",
+      "category": "redevelopment",
+      "title_en": "Minority Refuses Redevelopment: Does the Majority Decision Bind Everyone?",
+      "title_mr": "अल्पसंख सभासद पुनर्विकासाला विरोध करतात: बहुसंख्यांचा निर्णय सर्व सभासदांना बंधनकारक आहे का?",
+      "redev": true,
+      "sections": [
+        "79A",
+        "91",
+        "154B-1",
+        "154B-10"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "redevelopment",
+      "label_en": "Redevelopment of our society",
+      "label_mr": "आमच्या संस्थेचा पुनर्विकास",
+      "icon": "🏗",
+      "situations": [
+        {
+          "label_en": "A minority of members is blocking redevelopment",
+          "label_mr": "अल्पसंख्य सभासद पुनर्विकास अडवत आहेत",
+          "slug": "minority-refuses-redevelopment"
+        },
+        {
+          "label_en": "A developer claims rights over our project",
+          "label_mr": "विकसकाचा आमच्या प्रकल्पावर हक्काचा दावा",
+          "slug": "developer-selection-rights"
+        },
+        {
+          "label_en": "We are about to sign a development agreement",
+          "label_mr": "आम्ही विकास करार सही करणार आहोत",
+          "slug": "development-agreement-safeguards"
+        },
+        {
+          "label_en": "The developer has delayed / abandoned the project",
+          "label_mr": "विकसकाने उशीर केला / प्रकल्प सोडला",
+          "slug": "developer-delays-completion"
+        },
+        {
+          "label_en": "Some members refuse to vacate their flats",
+          "label_mr": "काही सभासद ताबा देण्यास नकार देतात",
+          "slug": "member-refuses-to-vacate"
+        },
+        {
+          "label_en": "We need urgent protection of the property",
+          "label_mr": "मालमत्तेचे तात्काळ संरक्षण आवश्यक",
+          "slug": "interim-protection-court-receiver"
+        },
+        {
+          "label_en": "Redevelopment is done — conveyance is pending",
+          "label_mr": "पुनर्विकास पूर्ण — अधिहस्तांतरण प्रलंबित",
+          "slug": "conveyance-after-redevelopment"
+        }
+      ]
+    },
+    {
+      "id": "committee",
+      "label_en": "Managing committee & administrators",
+      "label_mr": "व्यवस्थापन समिती व प्रशासक",
+      "icon": "👥",
+      "situations": [
+        {
+          "label_en": "A committee member should be disqualified",
+          "label_mr": "समिती सदस्य अपात्र घोषित होण्यायोग्य आहे",
+          "slug": "committee-disqualification"
+        },
+        {
+          "label_en": "An administrator may be appointed / was appointed",
+          "label_mr": "प्रशासक नियुक्ती प्रकरण",
+          "slug": "administrator-appointment"
+        },
+        {
+          "label_en": "The committee refuses to give documents",
+          "label_mr": "समिती दस्तऐवज देण्यास कालहर",
+          "slug": "documents-not-given"
+        }
+      ]
+    },
+    {
+      "id": "money",
+      "label_en": "Dues, charges & recovery",
+      "label_mr": "देयके, शुल्क व वसुली",
+      "icon": "₹",
+      "situations": [
+        {
+          "label_en": "Recovering dues from members or the developer",
+          "label_mr": "सभासद किंवा विकसकाकडून देयके वसुली",
+          "slug": "dues-recovery-154b-29"
+        },
+        {
+          "label_en": "Maintenance charges disputes",
+          "label_mr": "देखभाल खर्च वाद",
+          "slug": "maintenance-charges-disputes"
+        }
+      ]
+    },
+    {
+      "id": "membership",
+      "label_en": "Membership & flat rights",
+      "label_mr": "सभासदत्व व घराचे हक्क",
+      "icon": "🏠",
+      "situations": [
+        {
+          "label_en": "Conveyance / flat ownership after redevelopment",
+          "label_mr": "पुनर्विकासानंतर अधिहस्तांतरण / मालकी",
+          "slug": "conveyance-after-redevelopment"
+        }
+      ]
+    },
+    {
+      "id": "records",
+      "label_en": "Records & transparency",
+      "label_mr": "अभिलेख व पारदर्शकता",
+      "icon": "📂",
+      "situations": [
+        {
+          "label_en": "The society won't give me documents or copies",
+          "label_mr": "संस्था दस्तऐवज/प्रती देत नाही",
+          "slug": "documents-not-given"
+        }
+      ]
+    },
+    {
+      "id": "disputes",
+      "label_en": "Disputes & where to file",
+      "label_mr": "वाद व न्यायमंच",
+      "icon": "⚖",
+      "situations": [
+        {
+          "label_en": "Where do I file my dispute?",
+          "label_mr": "माझा वाद कोठे दाखल करावा?",
+          "slug": "forum-which-court"
+        }
+      ]
+    }
+  ]
+}

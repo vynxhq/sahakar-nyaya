@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Heading, Text, Card, Pagination } from "@astryxdesign/core";
 import type { LangCtx } from "../state/lang";
 import {
-  store, loadCore, loadHeadnotes, ensureSearchIndex, searchIds, checkMisroute,
+  store, loadHeadnotes, ensureSearchIndex, searchIds, checkMisroute,
   type JudgementLite, type Headnotes,
 } from "../data/loader";
 
@@ -35,9 +35,6 @@ function HeadnoteBlock({ j }: { j: JudgementLite }) {
   );
 }
 
-function ensureLoaded(): void {
-  void loadCore().then(() => { /* re-render via store mutation + key bump */ });
-}
 
 function TagRow({ j, t }: { j: JudgementLite; t: LangCtx["t"] }) {
   return (
@@ -49,65 +46,6 @@ function TagRow({ j, t }: { j: JudgementLite; t: LangCtx["t"] }) {
       {j.isRedevelopment && <span className="sn-tag-redev" style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 6, border: "1px solid #fca5a5" }}>{t("redevTag")}</span>}
       {j.needsReview && <span className="sn-tag-nr" style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 6, border: "1px solid #fcd34d" }}>{t("needsReview")}</span>}
     </div>
-  );
-}
-
-/* ---------- Home ---------- */
-
-export function viewHome(ctx: LangCtx): React.ReactNode {
-  const { t } = ctx;
-  void ensureLoaded;
-  const lite = store.lite!;
-  const sections = store.sections!;
-  const top5 = (store.top5 ?? []).map(id => sections.find(s => s.id === id)).filter((s): s is NonNullable<typeof s> => !!s);
-  const years = lite.map(j => +j.year).filter(y => y && !Number.isNaN(y));
-  const redev = lite.filter(j => j.isRedevelopment).length;
-  const benches = new Set(lite.map(j => j.bench)).size;
-  const nr = lite.filter(j => j.needsReview).length;
-  const stats: Array<[string, string]> = [
-    [String(lite.length), t("statJudgements")],
-    [String(redev), t("statRedev")],
-    [String(benches), t("statBenches")],
-    [`${Math.min(...years)}–${Math.max(...years)}`, t("statYears")],
-    [String(nr), t("statReview")],
-  ];
-  return (
-    <>
-      <Card style={{ background: "linear-gradient(135deg,#7a1f2b 0%,#5c1520 100%)", borderRadius: 16, marginBottom: 18, color: "#fff", borderColor: "transparent" }}>
-        <Heading level={1} style={{ color: "#fff", margin: 0 }}>
-          {t("heroTitle")}
-          <span style={{ display: "block", fontSize: "1.1rem", fontWeight: 600, opacity: 0.92, marginTop: 4 }}>{t("heroSub")}</span>
-        </Heading>
-        <Text style={{ color: "rgba(255,255,255,.92)", fontSize: "0.95rem" }}>{t("heroPara")}</Text>
-        <form className="sn-searchbox" style={{ marginTop: 12 }}
-          onSubmit={e => { e.preventDefault(); const q = (new FormData(e.currentTarget).get("q") as string) || ""; location.hash = `#/judgements?q=${encodeURIComponent(q)}`; }}>
-          <input name="q" placeholder={t("searchPlaceholder")}
-            style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "none", fontSize: "1rem" }} />
-          <button type="submit" style={{ padding: "12px 18px", borderRadius: 10, border: "none", background: "var(--sn-gold)", color: "#fff", fontWeight: 700, cursor: "pointer", fontSize: "1rem" }}>
-            {t("search")}
-          </button>
-        </form>
-      </Card>
-      <div className="sn-stats">
-        {stats.map(([v, label]) => (
-          <div key={label} className="sn-stat"><b>{v}</b><span>{label}</span></div>
-        ))}
-      </div>
-      <Heading level={2} style={{ margin: "6px 0 4px" }}>{t("essentials")}</Heading>
-      <Text style={{ color: "var(--color-text-secondary)", marginBottom: 12 }}>{t("essentialsSub")}</Text>
-      <div className="sn-cards">
-        {top5.map(s => (
-          <Card key={s.id}>
-            <a href={`#/sections#${s.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-              <Heading level={3} style={{ color: "var(--sn-maroon)", margin: 0 }}>{s.title}</Heading>
-              <Text style={{ fontSize: "0.82rem", color: "var(--color-text-secondary)" }}>
-                {(ctx.lang === "mr" ? s.summaryMr : s.summary).slice(0, 130)}…
-              </Text>
-            </a>
-          </Card>
-        ))}
-      </div>
-    </>
   );
 }
 
@@ -443,3 +381,5 @@ export function viewAbout(ctx: LangCtx): React.ReactNode {
     </>
   );
 }
+
+export { viewHome, TopicsDirectoryView, TopicPageView } from "./topics";
