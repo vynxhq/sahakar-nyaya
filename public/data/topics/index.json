@@ -14,6 +14,45 @@
       ]
     },
     {
+      "slug": "associate-joint-member-rights",
+      "category": "membership",
+      "title_en": "Associate and Joint Members: Who Gets What Rights",
+      "title_mr": "सहसभासद व संयुक्त सभासद: हक्क कोणाचे किती",
+      "redev": false,
+      "sections": [
+        "154B-1",
+        "154B-10",
+        "91"
+      ]
+    },
+    {
+      "slug": "audit-rectification",
+      "category": "records",
+      "title_en": "Statutory Audit and Rectification Reports: Duties, Access and Consequences",
+      "title_mr": "वैधानिक लेखा-परीक्षण व दुरुस्ती अहवाल: कर्तव्ये, प्रवेश आणि परिणाम",
+      "redev": false,
+      "sections": [
+        "81",
+        "82",
+        "75",
+        "77A",
+        "79A"
+      ]
+    },
+    {
+      "slug": "committee-co-option",
+      "category": "committee",
+      "title_en": "Co-option of Members to the Committee: Limits and Validity",
+      "title_mr": "समितीत सभासदांचे सह-समावेश (को-ऑप्शन): मर्यादा आणि वैधता",
+      "redev": false,
+      "sections": [
+        "91",
+        "77A",
+        "154B-19",
+        "154B-23"
+      ]
+    },
+    {
       "slug": "committee-disqualification",
       "category": "committee",
       "title_en": "Committee Member Disqualification: Who Loses the Seat and Gets a 5-Year Bar",
@@ -24,6 +63,32 @@
         "154B-8",
         "91",
         "73CA"
+      ]
+    },
+    {
+      "slug": "committee-meetings-quorum",
+      "category": "committee",
+      "title_en": "General Body and Committee Meetings: Notice, Quorum and Valid Resolutions",
+      "title_mr": "सर्वसाधारण व समिती बैठका: नोटीस, कोरम आणि वैध ठराव",
+      "redev": false,
+      "sections": [
+        "91",
+        "77A",
+        "154B-8",
+        "154B-19",
+        "154B-23",
+        "154B-25"
+      ]
+    },
+    {
+      "slug": "corpus-fsi-rights",
+      "category": "redevelopment",
+      "title_en": "Corpus Money and FSI/TDR Rights: What the Society (and Members) Really Own in a Redevelopment",
+      "title_mr": "कॉर्पस रक्कम व एफएसआय/टीडीआर हक्क: पुनर्विकासात संस्थेचे (व सभासदांचे) खरे मालकी-हक्क",
+      "redev": true,
+      "sections": [
+        "154B-1",
+        "91"
       ]
     },
     {
@@ -99,6 +164,57 @@
       ]
     },
     {
+      "slug": "gst-maintenance",
+      "category": "money",
+      "title_en": "GST on Maintenance Charges: Thresholds, Registration and Reverse Charge",
+      "title_mr": "देखभाल देयकांवर जीएसटी: मर्यादा, नोंदणी आणि रिव्हर्स चार्ज",
+      "redev": false,
+      "sections": [
+        "154B-16",
+        "154B-29",
+        "101",
+        "91"
+      ]
+    },
+    {
+      "slug": "insurance-during-construction",
+      "category": "redevelopment",
+      "title_en": "Insurance During Redevelopment: Who Insures the Building and What Happens When Disaster Strikes Mid-Project",
+      "title_mr": "पुनर्विकासादरम्यानचा विमा: इमारतीचा विमा कोण करते आणि प्रकल्पाच्या मध्येच आपत्ती आली तर काय",
+      "redev": true,
+      "sections": [
+        "9_Arb",
+        "91"
+      ]
+    },
+    {
+      "slug": "interest-default-voting",
+      "category": "money",
+      "title_en": "Interest on Dues, Defaulters and Voting Rights",
+      "title_mr": "देयकांवरील व्याज, बकेदारी आणि मतदान हक्क",
+      "redev": false,
+      "sections": [
+        "154B-23",
+        "73CA",
+        "154B-29",
+        "101",
+        "154"
+      ]
+    },
+    {
+      "slug": "interim-injunction-coop-court",
+      "category": "disputes",
+      "title_en": "Interim Injunctions Before the Co-operative Court: Stopping or Shielding a Redevelopment Within a Section 91 Dispute",
+      "title_mr": "सहकारी न्यायालयासमोरील अंतरिम स्थगिती: कलम ९१ वादात पुनर्विकास थांबवणे किंवा वाचवणे",
+      "redev": false,
+      "sections": [
+        "91",
+        "95",
+        "97",
+        "9_Arb"
+      ]
+    },
+    {
       "slug": "interim-protection-court-receiver",
       "category": "redevelopment",
       "title_en": "Section 9 Interim Protection and the Court Receiver: Who Can Invoke It, Who Cannot",
@@ -124,6 +240,19 @@
       ]
     },
     {
+      "slug": "member-inspection-rights",
+      "category": "records",
+      "title_en": "Inspection of Society Records and Copies: Section 154B-8 in Action",
+      "title_mr": "संस्थेच्या अभिलेखांची तपासणी व नक्कल: कलम १५४ब-८ व्यवहारात",
+      "redev": false,
+      "sections": [
+        "154B-8",
+        "154B-23",
+        "146",
+        "91"
+      ]
+    },
+    {
       "slug": "member-refuses-to-vacate",
       "category": "redevelopment",
       "title_en": "Member Refuses to Vacate: The Duty to Vacate and What Courts Have Done",
@@ -134,6 +263,20 @@
         "9_Arb",
         "91",
         "79A"
+      ]
+    },
+    {
+      "slug": "member-transfer-nomination",
+      "category": "membership",
+      "title_en": "Transferring a Flat: Heirs, Nominees and Purchasers",
+      "title_mr": "फ्लॅटचे हस्तांतरण: वारसदार, नामनिर्देशित व्यक्ती आणि खरेदीदार",
+      "redev": false,
+      "sections": [
+        "154B-1",
+        "154B-13",
+        "154B-26",
+        "154B-27",
+        "91"
       ]
     },
     {
@@ -148,47 +291,156 @@
         "154B-1",
         "154B-10"
       ]
+    },
+    {
+      "slug": "parking-charges-allotment",
+      "category": "money",
+      "title_en": "Parking: Slot Allotment, Parking Charges and the Stilt Question",
+      "title_mr": "गाडी ताफा (पार्किंग): जागा-वाटप, पार्किंग आकारणी आणि स्टिल्ट-प्रश्न",
+      "redev": false,
+      "sections": [
+        "154B-16",
+        "154B-27",
+        "154B-29",
+        "91"
+      ]
+    },
+    {
+      "slug": "rent-in-lieu-transit-rent",
+      "category": "redevelopment",
+      "title_en": "Transit Rent and Rent in Lieu: Who Pays You During Redevelopment",
+      "title_mr": "ट्रान्झिट भाडे व पर्यायी भाडे: पुनर्विकासाच्या काळात भाडे देणारे कोण",
+      "redev": true,
+      "sections": [
+        "9_Arb",
+        "79",
+        "91"
+      ]
+    },
+    {
+      "slug": "self-redevelopment",
+      "category": "redevelopment",
+      "title_en": "Self-Redevelopment: The Society Itself as Developer - Incentives, Bank Loans and Disputes",
+      "title_mr": "स्वपुनर्विकास: संस्थाच विकासक - सवलती, बँक कर्ज आणि वाद",
+      "redev": true,
+      "sections": [
+        "79A",
+        "91",
+        "76"
+      ]
+    },
+    {
+      "slug": "sinking-fund-major-repairs",
+      "category": "money",
+      "title_en": "Sinking Fund and Major Repairs Fund: Levy, Use and Misuse",
+      "title_mr": "सिंकिंग फंड व मोठ्या दुरुस्ती निधी: आकारणी, वापर आणि गैरवापर",
+      "redev": false,
+      "sections": [
+        "154B-15",
+        "154B-16",
+        "154B-29",
+        "101",
+        "79A"
+      ]
+    },
+    {
+      "slug": "society-elections-73cb",
+      "category": "committee",
+      "title_en": "Society Committee Elections: Programme, Scrutiny and Election Disputes",
+      "title_mr": "संस्थेच्या समिती-निवडणुका: कार्यक्रम, तपासणी आणि निवडणूक-वाद",
+      "redev": false,
+      "sections": [
+        "73CA",
+        "91",
+        "77A",
+        "154B-19"
+      ]
+    },
+    {
+      "slug": "tenant-leave-license",
+      "category": "membership",
+      "title_en": "Tenants and Leave-and-Licensees in Society Flats",
+      "title_mr": "संस्थेच्या फ्लॅटमधील भाडेकरू व लीज-लायसन्सधारक",
+      "redev": false,
+      "sections": [
+        "154B-1",
+        "154B-10",
+        "154B-23",
+        "91"
+      ]
+    },
+    {
+      "slug": "writ-article-227-scope",
+      "category": "disputes",
+      "title_en": "Going to the High Court in a Society Matter: When Article 226/227 Works and When It Fails",
+      "title_mr": "संस्थेच्या प्रश्नात हायकोर्टात जाणे: कलम २२६/२२७ कधी उपयोगी आणि कधी निष्फळ",
+      "redev": false,
+      "sections": [
+        "91",
+        "154",
+        "154B-29"
+      ]
     }
   ],
   "categories": [
     {
       "id": "redevelopment",
-      "label_en": "Redevelopment of our society",
+      "label_en": "Redevelopment of Our Society",
       "label_mr": "आमच्या संस्थेचा पुनर्विकास",
       "icon": "🏗",
       "situations": [
         {
-          "label_en": "A minority of members is blocking redevelopment",
+          "label_en": "Insurance During Construction",
+          "label_mr": "बांधकामादरम्यान विमा",
+          "slug": "insurance-during-construction"
+        },
+        {
+          "label_en": "Corpus Money and FSI/TDR Rights",
+          "label_mr": "कॉर्पस रक्कम व FSI/TDR हक्क",
+          "slug": "corpus-fsi-rights"
+        },
+        {
+          "label_en": "Transit Rent During Redevelopment",
+          "label_mr": "पुनर्विकासादरम्यान व्यतिरिक्त भाडे",
+          "slug": "rent-in-lieu-transit-rent"
+        },
+        {
+          "label_en": "Self-Redevelopment: Incentives and Process",
+          "label_mr": "स्वपुनर्विकास: प्रोत्साहन व प्रक्रिया",
+          "slug": "self-redevelopment"
+        },
+        {
+          "label_en": "A Minority of Members Is Blocking Redevelopment",
           "label_mr": "अल्पसंख्य सभासद पुनर्विकास अडवत आहेत",
           "slug": "minority-refuses-redevelopment"
         },
         {
-          "label_en": "A developer claims rights over our project",
+          "label_en": "A Developer Claims Rights Over Our Project",
           "label_mr": "विकसकाचा आमच्या प्रकल्पावर हक्काचा दावा",
           "slug": "developer-selection-rights"
         },
         {
-          "label_en": "We are about to sign a development agreement",
+          "label_en": "We Are About to Sign a Development Agreement",
           "label_mr": "आम्ही विकास करार सही करणार आहोत",
           "slug": "development-agreement-safeguards"
         },
         {
-          "label_en": "The developer has delayed / abandoned the project",
+          "label_en": "The Developer Has Delayed / Abandoned the Project",
           "label_mr": "विकसकाने उशीर केला / प्रकल्प सोडला",
           "slug": "developer-delays-completion"
         },
         {
-          "label_en": "Some members refuse to vacate their flats",
+          "label_en": "Some Members Refuse to Vacate Their Flats",
           "label_mr": "काही सभासद ताबा देण्यास नकार देतात",
           "slug": "member-refuses-to-vacate"
         },
         {
-          "label_en": "We need urgent protection of the property",
+          "label_en": "We Need Urgent Protection of the Property",
           "label_mr": "मालमत्तेचे तात्काळ संरक्षण आवश्यक",
           "slug": "interim-protection-court-receiver"
         },
         {
-          "label_en": "Redevelopment is done — conveyance is pending",
+          "label_en": "Redevelopment Is Done — Conveyance Is Pending",
           "label_mr": "पुनर्विकास पूर्ण — अधिहस्तांतरण प्रलंबित",
           "slug": "conveyance-after-redevelopment"
         }
@@ -201,17 +453,32 @@
       "icon": "👥",
       "situations": [
         {
-          "label_en": "A committee member should be disqualified",
+          "label_en": "Co-option of Committee Members",
+          "label_mr": "समितीत सह-नियुक्ती",
+          "slug": "committee-co-option"
+        },
+        {
+          "label_en": "Meetings, Quorum, Notices and Minutes",
+          "label_mr": "सभा, गणपूर्ती, सूचना व इतिवृत्त",
+          "slug": "committee-meetings-quorum"
+        },
+        {
+          "label_en": "Committee Elections: SEC, Returns and Disputes",
+          "label_mr": "समिती निवडणूक: आयुक्त, परतावे व वाद",
+          "slug": "society-elections-73cb"
+        },
+        {
+          "label_en": "A Committee Member Should Be Disqualified",
           "label_mr": "समिती सदस्य अपात्र घोषित होण्यायोग्य आहे",
           "slug": "committee-disqualification"
         },
         {
-          "label_en": "An administrator may be appointed / was appointed",
+          "label_en": "An Administrator May Be Appointed / Was Appointed",
           "label_mr": "प्रशासक नियुक्ती प्रकरण",
           "slug": "administrator-appointment"
         },
         {
-          "label_en": "The committee refuses to give documents",
+          "label_en": "The Committee Refuses to Give Documents",
           "label_mr": "समिती दस्तऐवज देण्यास कालहर",
           "slug": "documents-not-given"
         }
@@ -224,12 +491,32 @@
       "icon": "₹",
       "situations": [
         {
-          "label_en": "Recovering dues from members or the developer",
+          "label_en": "GST on Maintenance Charges",
+          "label_mr": "देखभाल खर्चावर GST",
+          "slug": "gst-maintenance"
+        },
+        {
+          "label_en": "Interest on Dues and Voting Rights",
+          "label_mr": "बाकी व्याज व मतदान हक्क",
+          "slug": "interest-default-voting"
+        },
+        {
+          "label_en": "Parking Allotment and Charges",
+          "label_mr": "पार्किंग वाटप व शुल्क",
+          "slug": "parking-charges-allotment"
+        },
+        {
+          "label_en": "Sinking Fund and Major Repairs",
+          "label_mr": "सिंकिंग फंड व मोठ्या दुरुस्ती",
+          "slug": "sinking-fund-major-repairs"
+        },
+        {
+          "label_en": "Recovering Dues From Members or the Developer",
           "label_mr": "सभासद किंवा विकसकाकडून देयके वसुली",
           "slug": "dues-recovery-154b-29"
         },
         {
-          "label_en": "Maintenance charges disputes",
+          "label_en": "Maintenance Charges Disputes",
           "label_mr": "देखभाल खर्च वाद",
           "slug": "maintenance-charges-disputes"
         }
@@ -242,7 +529,22 @@
       "icon": "🏠",
       "situations": [
         {
-          "label_en": "Conveyance / flat ownership after redevelopment",
+          "label_en": "Tenants and Leave-and-Licensees in Society Flats",
+          "label_mr": "संस्थेच्या घरातील भाडेकरू",
+          "slug": "tenant-leave-license"
+        },
+        {
+          "label_en": "Associate and Joint Member Rights",
+          "label_mr": "सह-सभासद व संयुक्त सभासद हक्क",
+          "slug": "associate-joint-member-rights"
+        },
+        {
+          "label_en": "Transferring a Flat: Heirs, Nominees and Purchasers",
+          "label_mr": "घराचे हस्तांतरण: वारस, नामनिर्देश, खरेदीदार",
+          "slug": "member-transfer-nomination"
+        },
+        {
+          "label_en": "Conveyance / Flat Ownership After Redevelopment",
           "label_mr": "पुनर्विकासानंतर अधिहस्तांतरण / मालकी",
           "slug": "conveyance-after-redevelopment"
         }
@@ -255,7 +557,17 @@
       "icon": "📂",
       "situations": [
         {
-          "label_en": "The society won't give me documents or copies",
+          "label_en": "Statutory Audit and Rectification",
+          "label_mr": "वैधानिक लेखापरीक्षा व दुरुस्ती",
+          "slug": "audit-rectification"
+        },
+        {
+          "label_en": "Inspecting Society Records",
+          "label_mr": "अभिलेख तपासणी",
+          "slug": "member-inspection-rights"
+        },
+        {
+          "label_en": "The Society Won't Give Me Documents or Copies",
           "label_mr": "संस्था दस्तऐवज/प्रती देत नाही",
           "slug": "documents-not-given"
         }
@@ -268,7 +580,17 @@
       "icon": "⚖",
       "situations": [
         {
-          "label_en": "Where do I file my dispute?",
+          "label_en": "Interim Injunctions Before the Co-operative Court",
+          "label_mr": "सहकारी न्यायालयात अंतरिम स्थगिती",
+          "slug": "interim-injunction-coop-court"
+        },
+        {
+          "label_en": "When the High Court Will Hear a Society Matter",
+          "label_mr": "उच्च न्यायालय कधी सुनावणी करते",
+          "slug": "writ-article-227-scope"
+        },
+        {
+          "label_en": "Where Do I File My Dispute?",
           "label_mr": "माझा वाद कोठे दाखल करावा?",
           "slug": "forum-which-court"
         }

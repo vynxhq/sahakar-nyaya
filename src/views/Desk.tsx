@@ -168,7 +168,7 @@ export function WelcomeDoc(): React.ReactNode {
         </a>
         <a href="#/judgements" className="flex items-center gap-3 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors hover:border-primary hover:text-primary">
           <Gavel size={17} className="text-primary" />
-          {lang === "mr" ? "निकाल शोधा" : "Search judgements"}
+          {lang === "mr" ? "निकाल शोधा" : "Search Judgements"}
         </a>
         <a href="#/timeline" className="flex items-center gap-3 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors hover:border-primary hover:text-primary">
           <History size={17} className="text-primary" />
@@ -248,7 +248,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
 
       {/* the disagreement */}
       <div id="disagreement" />
-      <h2 className="font-display text-xl">{lang === "mr" ? "वाद — दोन्ही बाजू" : "The disagreement"}</h2>
+      <h2 className="font-display text-xl">{lang === "mr" ? "वाद — दोन्ही बाजू" : "The Disagreement"}</h2>
       <BlurFade inView delay={0.1} className="mt-3 grid gap-3 md:grid-cols-2">
         <div className="rounded-xl border bg-card p-4">
           <div className="mb-2 text-[0.7rem] font-bold uppercase tracking-widest text-muted-foreground">{t("disputeATitle")}</div>
@@ -261,7 +261,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       </BlurFade>
 
       {/* law */}
-      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "कायदा काय म्हणतो" : "What the law says"}</h2>
+      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "कायदा काय म्हणतो" : "What the Law Says"}</h2>
       <p className="mt-3 leading-relaxed">{bLang(topic.lawSummary_en, topic.lawSummary_mr)}</p>
       {topic.grRefs.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-1.5">
@@ -272,12 +272,12 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       )}
 
       {/* courts held */}
-      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "न्यायालयांनी काय ठरवले" : "What the courts held"}</h2>
+      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "न्यायालयांनी काय ठरवले" : "What the Courts Held"}</h2>
       <p className="text-sm text-muted-foreground">
         {lang === "mr" ? "बॉम्बे उच्च न्यायालयाचे खरे निकाल — कोणत्या मताला पाठिंबा त्याप्रमाणे गटबद्ध." : "Real Bombay High Court judgements, grouped by which interpretation they supported."}
       </p>
       <div className="mt-4">
-        {([["a", lang === "mr" ? "मत A ला पाठिंबा" : "Supports interpretation A"],
+        {([["a", lang === "mr" ? "मत A ला पाठिंबा" : "Supports Interpretation A"],
            ["b", lang === "mr" ? "मत B ला पाठिंबा" : "Supports interpretation B"],
            ["conditions", lang === "mr" ? "अटी / बारकावे" : "With conditions"]] as Array<[string, string]>).map(([g, label]) => {
           const ids = topic.holdGroups[g as keyof typeof topic.holdGroups] ?? [];

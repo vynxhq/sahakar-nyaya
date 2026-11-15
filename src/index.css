@@ -50,8 +50,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-body: "Atkinson Hyperlegible", "Noto Sans Devanagari", system-ui, sans-serif;
-  --font-display: "Source Serif 4", "Noto Serif Devanagari", Georgia, serif;
+  --font-body: "IBM Plex Sans", "IBM Plex Sans Devanagari", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-display: "IBM Plex Serif", "Noto Serif Devanagari", Georgia, serif;
 }
 
 @layer base {
@@ -65,7 +65,7 @@
     line-height: 1.7;
   }
   h1, h2, h3, h4 {
-    font-family: "Source Serif 4", "Noto Serif Devanagari", Georgia, serif;
+    font-family: "IBM Plex Serif", "Noto Serif Devanagari", Georgia, serif;
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
@@ -174,7 +174,7 @@
 
 /* document */
 .sn-doc-title {
-  font-family: "Source Serif 4", "Noto Serif Devanagari", Georgia, serif;
+  font-family: "IBM Plex Serif", "Noto Serif Devanagari", Georgia, serif;
   font-size: clamp(1.9rem, 3.5vw, 2.5rem);
   font-weight: 400; line-height: 1.18; letter-spacing: -0.01em;
   margin: 0 0 12px; color: var(--foreground);
@@ -218,7 +218,7 @@
 .sn-int-body { font-size: 0.95rem; }
 .sn-sect { margin-bottom: 40px; }
 .sn-sect-h {
-  font-family: "Source Serif 4", "Noto Serif Devanagari", Georgia, serif;
+  font-family: "IBM Plex Serif", "Noto Serif Devanagari", Georgia, serif;
   font-size: 1.45rem; font-weight: 400; margin: 0 0 16px; color: var(--foreground);
 }
 .sn-sect-body { font-size: 1rem; line-height: 1.8; color: var(--foreground); }
