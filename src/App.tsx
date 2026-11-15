@@ -80,6 +80,15 @@ export default function App() {
     const iv = setInterval(() => force(x => x + 1), 1200);
     return () => clearInterval(iv);
   }, []);
+  // Bug A fix: when a topic is open but no area was picked, derive the area
+  // from the topic's category so the Role/Situation lists are never hidden.
+  useEffect(() => {
+    if (view.name !== "desk" || !view.slug) return;
+    if (guideCategory) return;
+    const tp = store.topics[view.slug] ?? store.topicsIndex?.topics.find(x => x.slug === view.slug);
+    const cat = tp?.category ?? store.topicsIndex?.topics.find(x => x.slug === view.slug)?.category;
+    if (cat) setGuideCategory(cat);
+  }, [view, guideCategory]);
   usePaletteShortcut(setPaletteOpen);
 
   const t = (key: CatalogKey) => tr(lang, key);
@@ -148,7 +157,10 @@ export default function App() {
             role={deskRole}
             category={guideCategory}
             onCategory={c => { setGuideCategory(c); if (deskTopic) location.hash = "#/"; }}
-            onRole={r => setGuideRole(r)}
+            onRole={r => {
+              setGuideRole(r);
+              if (deskTopic) location.hash = `#/t/${deskTopic}?role=${r}`;
+            }}
             onNavigate={() => {}}
           />
           <main className="sn-pane">{pane}</main>

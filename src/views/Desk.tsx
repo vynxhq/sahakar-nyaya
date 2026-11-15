@@ -36,7 +36,9 @@ export function Rail({ ctx, slug, role, category, onCategory, onRole, onNavigate
   const { t, lang } = ctx;
   const idx = store.topicsIndex;
   const cats = idx?.categories ?? [];
-  const cat = cats.find(c => c.id === category);
+  const effCat = category
+    || (slug ? idx?.topics.find(x => x.slug === slug)?.category ?? "" : "");
+  const cat = cats.find(c => c.id === effCat);
   const situations = cat?.situations ?? [];
   void onNavigate;
 
@@ -47,7 +49,7 @@ export function Rail({ ctx, slug, role, category, onCategory, onRole, onNavigate
         {cats.map(c => {
           const Icon = CATS.find(x => x.id === c.id)?.icon ?? Building2;
           return (
-            <button key={c.id} className={"sn-rail-item" + (category === c.id ? " active" : "")}
+            <button key={c.id} className={"sn-rail-item" + (effCat === c.id ? " active" : "")}
               onClick={() => onCategory(c.id)}>
               <Icon size={15} />
               <span>{lang === "mr" ? c.label_mr : c.label_en}</span>
@@ -57,7 +59,7 @@ export function Rail({ ctx, slug, role, category, onCategory, onRole, onNavigate
         {cats.length === 0 && <span className="sn-rail-note">{t("loading")}</span>}
       </div>
 
-      {category && (
+      {effCat && (
         <>
           <h5>{lang === "mr" ? "भूमिका" : "Role"}</h5>
           <div className="sn-rail-list">
@@ -76,7 +78,7 @@ export function Rail({ ctx, slug, role, category, onCategory, onRole, onNavigate
         </>
       )}
 
-      {category && role && situations.length > 0 && (
+      {effCat && role && situations.length > 0 && (
         <>
           <h5>{lang === "mr" ? "परिस्थिती" : "Situation"}</h5>
           <div className="sn-rail-list">

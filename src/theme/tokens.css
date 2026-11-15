@@ -1,56 +1,48 @@
-/* Sahakar Nyaya v4 — "Accessible & Ethical" design system.
-   Navy ink, institutional blue, Atkinson Hyperlegible, zero gradients,
-   zero emoji-icons. The document IS the design. */
+/* Sahakar Nyaya v6 — HubSpot-grade grammar adapted to a civic-legal product.
+   Light serif display, airy body, ONE saffron-orange accent, warm white surfaces. */
 
 :root {
-  /* surfaces + ink */
-  --ink: #0f172a;
-  --ink-2: #475569;
-  --paper: #f8fafc;
-  --surface: #ffffff;
-  --muted: #e8ecf1;
-  --border: #e2e8f0;
+  /* spacing scale (8px base) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 40px; --s8: 48px;
 
-  /* brand: institutional blue */
-  --primary: #0369a1;
-  --primary-strong: #075985;
-  --primary-deep: #0f172a;
-  --ring: #0369a1;
+  /* ink + surfaces (warm) */
+  --ink: #1f1f1f;
+  --ink-2: #5f5f5c;
+  --paper: #fcfcfa;
+  --surface: #ffffff;
+  --muted: #f0efec;
+  --border: #e6e4de;
+
+  /* ONE accent: saffron-orange */
+  --accent: #e8590c;
+  --accent-hover: #cf4f0a;
 
   /* semantic */
-  --success: #15803d;
-  --warning: #b45309;
-  --error: #b91c1c;
-
-  /* category hues (chips stay monochrome-blue; categories differ by icon) */
-  --hue-redevelopment: #0369a1;
-  --hue-membership: #075985;
-  --hue-committee: #075985;
-  --hue-money: #0369a1;
-  --hue-records: #075985;
-  --hue-disputes: #0369a1;
+  --success: #2b8a3e;
+  --warning: #e8590c;
+  --error: #c92a2a;
 
   /* fonts */
   --font-body: "Atkinson Hyperlegible", "Noto Sans Devanagari", system-ui, sans-serif;
-  --font-heading: "Atkinson Hyperlegible", "Noto Sans Devanagari", system-ui, sans-serif;
-  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
+  --font-display: "Source Serif 4", "Noto Serif Devanagari", Georgia, serif;
+  --font-mono: ui-monospace, "Cascadia Mono", monospace;
 
   /* Astryx overrides */
-  --color-accent: #0369a1;
+  --color-accent: #e8590c;
   --color-on-accent: #ffffff;
-  --color-text-accent: #0369a1;
-  --color-icon-accent: #0369a1;
-  --color-accent-muted: rgba(3, 105, 161, 0.08);
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-background-body: #f8fafc;
+  --color-text-accent: #cf4f0a;
+  --color-icon-accent: #e8590c;
+  --color-accent-muted: rgba(232, 89, 12, 0.08);
+  --color-text-primary: #1f1f1f;
+  --color-text-secondary: #5f5f5c;
+  --color-background-body: #fcfcfa;
   --color-background-card: #ffffff;
-  --color-border: #e2e8f0;
-  --color-success: #15803d;
-  --color-warning: #b45309;
-  --color-error: #b91c1c;
+  --color-border: #e6e4de;
+  --color-success: #2b8a3e;
+  --color-warning: #e8590c;
+  --color-error: #c92a2a;
   --font-family-body: var(--font-body);
-  --font-family-heading: var(--font-heading);
+  --font-family-heading: var(--font-display);
 }
 
 html { color-scheme: light; }
