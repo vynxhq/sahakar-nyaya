@@ -25,6 +25,7 @@ function JRow({ j }: { j: JudgementLite }) {
       <div className="jt">{hn?.title || `CNR ${j.cnr}`}</div>
       <div className="jn">
         <span className="sn-hnlabel">EN</span> {(hn?.headnote_en ?? "").slice(0, 140)}…
+        <div style={{ marginTop: 4 }}><span className="sn-hnlabel">मरा</span> {(hn?.headnote_mr ?? "").slice(0, 140)}…</div>
         <div style={{ marginTop: 4 }}>{j.date} · {j.benchName}{j.judge ? ` · ${j.judge}` : ""}</div>
       </div>
     </a>

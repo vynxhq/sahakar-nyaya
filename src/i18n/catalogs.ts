@@ -145,6 +145,22 @@ export const catalog = {
   comingSoon: { en: "Topics for this area are coming soon — check the other areas meanwhile.", mr: "या क्षेत्रासाठी विषय लवकरच येत आहेत — तोपर्यंत इतर क्षेत्रे पहा." },
   aiLabelShort: { en: "AI-generated — under legal review", mr: "ॲI-जनित — कायदेशीर तपासणीत" },
   readTopic: { en: "Read the topic", mr: "विषय वाचा" },
+
+  disagreementHeading: { en: "The Disagreement", mr: "वाद — दोन्ही बाजू" },
+  lawHeading: { en: "What the Law Says", mr: "कायदा काय म्हणतो" },
+  courtsHeading: { en: "What the Courts Held", mr: "न्यायालयांनी काय ठरवले" },
+  sourcesHeading: { en: "Sources", mr: "स्रोत" },
+  feedbackQuestion: { en: "Was this answer useful?", mr: "हे उत्तर उपयुक्त होते?" },
+  feedbackHelpful: { en: "Yes, Helpful", mr: "उपयुक्त" },
+  feedbackClarity: { en: "Needs Clarity", mr: "अधिक स्पष्ट हवे" },
+  feedbackLawyer: { en: "I Need a Lawyer", mr: "मला वकिलाशी संपर्क करायचा आहे" },
+  feedbackThanks: { en: "Thanks — your note is saved on this device and will shape the next review of this page.", mr: "प्रतिसादाबद्दल धन्यवाद — तुमची नोंद जतन केली आहे." },
+  share: { en: "Share", mr: "शेअर करा" },
+
+  situationLabel: { en: "Situation", mr: "परिस्थिती" },
+  paletteSections: { en: "Sections", mr: "कलम" },
+  paletteJudgements: { en: "Judgements", mr: "निकाल" },
+  timelineDocTitle: { en: "Redevelopment Law Timeline — 1991 → Today", mr: "पुनर्विकास विधी — १९९१ → आज" },
 } as const;
 
 export type CatalogKey = keyof typeof catalog;

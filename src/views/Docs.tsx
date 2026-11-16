@@ -10,7 +10,7 @@ export function TimelineDoc({ ctx }: { ctx: LangCtx }) {
   return (
     <div className="sn-doc">
       <p className="sn-kicker">{t("timeline")}</p>
-      <h1 className="sn-doc-title">{lang === "mr" ? "पुनर्विकास विधी — १९९१ → आज" : "Redevelopment law timeline — 1991 → today"}</h1>
+      <h1 className="sn-doc-title">{t("timelineDocTitle")}</h1>
       <p style={{ color: "var(--ink-2)" }}>{lang === "mr" ? tl.sourcePackNoteMr : tl.sourcePackNote}</p>
       <div className="sn-tl">
         {tl.items.map((it, i) => (

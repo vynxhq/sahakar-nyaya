@@ -82,7 +82,7 @@ export function Rail({ slug, role, category, onCategory, onRole }: {
       {effCat && role && situations.length > 0 && (
         <>
           <h5 className="mb-2 mt-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            {lang === "mr" ? "परिस्थिती" : "Situation"}
+            {t("situationLabel")}
           </h5>
           <div className="flex flex-col gap-0.5">
             {situations.map(s => (
@@ -248,7 +248,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
 
       {/* the disagreement */}
       <div id="disagreement" />
-      <h2 className="font-display text-xl">{lang === "mr" ? "वाद — दोन्ही बाजू" : "The Disagreement"}</h2>
+      <h2 className="font-display text-xl">{t("disagreementHeading")}</h2>
       <BlurFade inView delay={0.1} className="mt-3 grid gap-3 md:grid-cols-2">
         <div className="rounded-xl border bg-card p-4">
           <div className="mb-2 text-[0.7rem] font-bold uppercase tracking-widest text-muted-foreground">{t("disputeATitle")}</div>
@@ -261,7 +261,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       </BlurFade>
 
       {/* law */}
-      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "कायदा काय म्हणतो" : "What the Law Says"}</h2>
+      <h2 className="mt-8 font-display text-xl">{t("lawHeading")}</h2>
       <p className="mt-3 leading-relaxed">{bLang(topic.lawSummary_en, topic.lawSummary_mr)}</p>
       {topic.grRefs.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-1.5">
@@ -272,14 +272,14 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       )}
 
       {/* courts held */}
-      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "न्यायालयांनी काय ठरवले" : "What the Courts Held"}</h2>
+      <h2 className="mt-8 font-display text-xl">{t("courtsHeading")}</h2>
       <p className="text-sm text-muted-foreground">
         {lang === "mr" ? "बॉम्बे उच्च न्यायालयाचे खरे निकाल — कोणत्या मताला पाठिंबा त्याप्रमाणे गटबद्ध." : "Real Bombay High Court judgements, grouped by which interpretation they supported."}
       </p>
       <div className="mt-4">
-        {([["a", lang === "mr" ? "मत A ला पाठिंबा" : "Supports Interpretation A"],
-           ["b", lang === "mr" ? "मत B ला पाठिंबा" : "Supports interpretation B"],
-           ["conditions", lang === "mr" ? "अटी / बारकावे" : "With conditions"]] as Array<[string, string]>).map(([g, label]) => {
+        {([["a", t("courtsA")],
+           ["b", t("courtsB")],
+           ["conditions", t("courtsConditions")]] as Array<[string, string]>).map(([g, label]) => {
           const ids = topic.holdGroups[g as keyof typeof topic.holdGroups] ?? [];
           if (ids.length === 0) return null;
           return (
@@ -322,7 +322,7 @@ export function TopicDoc({ ctx, topic }: { ctx: LangCtx; topic: Topic }) {
       </div>
 
       {/* sources */}
-      <h2 className="mt-8 font-display text-xl">{lang === "mr" ? "स्रोत" : "Sources"}</h2>
+      <h2 className="mt-8 font-display text-xl">{t("sourcesHeading")}</h2>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {topic.sections.map(s => (
           <a key={s} href={`#/judgements?section=${encodeURIComponent(s)}`}

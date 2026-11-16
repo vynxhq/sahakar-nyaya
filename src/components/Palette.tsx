@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { useLang } from "@/state/lang";
+import { catalog } from "@/i18n/catalogs";
 import { store, searchIds } from "@/data/loader";
 
 export function Palette({ onClose }: { onClose: () => void }) {
@@ -41,7 +42,7 @@ export function Palette({ onClose }: { onClose: () => void }) {
           </CommandGroup>
         )}
         {sections.length > 0 && (
-          <CommandGroup heading={lang === "mr" ? "कलम" : "Sections"}>
+          <CommandGroup heading={catalog.paletteSections[lang]}>
             {sections.map(s => (
               <CommandItem key={s.id} onSelect={() => open(`#/reference#${s.id}`)}>
                 <span>§ {s.id} — {s.title}</span>
@@ -50,7 +51,7 @@ export function Palette({ onClose }: { onClose: () => void }) {
           </CommandGroup>
         )}
         {judgements.length > 0 && (
-          <CommandGroup heading={lang === "mr" ? "निकाल" : "Judgements"}>
+          <CommandGroup heading={catalog.paletteJudgements[lang]}>
             {judgements.map(j => (
               <CommandItem key={j.id} onSelect={() => open(`#/j/${j.id}`)}>
                 <span>{j.date} · {j.benchName}{j.judge ? ` · ${j.judge}` : ""}</span>
@@ -59,7 +60,7 @@ export function Palette({ onClose }: { onClose: () => void }) {
           </CommandGroup>
         )}
         {!hasAny && query && (
-          <CommandGroup heading={lang === "mr" ? "निकाल" : "Judgements"}>
+          <CommandGroup heading={catalog.paletteJudgements[lang]}>
             <CommandItem onSelect={() => { open(`#/judgements?q=${encodeURIComponent(query)}`); }} className="text-muted-foreground">
               {lang === "mr" ? "सर्व निकालांमध्ये शोधा" : `Search all judgements for “${query}”`}
             </CommandItem>

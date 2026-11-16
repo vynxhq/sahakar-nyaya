@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { catalog, type Lang } from "@/i18n/catalogs";
 
 /** Thin scroll-progress bar fixed under the topbar. Only rendered on topic pages. */
 export function ReadingProgress(): React.ReactNode {
@@ -25,7 +26,7 @@ export function ReadingProgress(): React.ReactNode {
 }
 
 /** Per-topic feedback stored locally (no backend yet). */
-export function FeedbackWidget({ lang }: { lang: string }) {
+export function FeedbackWidget({ lang }: { lang: Lang }) {
   const key = "sn_feedback_" + (location.hash || "/");
   const [given, setGiven] = useState<string | null>(null);
   useEffect(() => { setGiven(localStorage.getItem(key)); }, [key]);
@@ -33,9 +34,7 @@ export function FeedbackWidget({ lang }: { lang: string }) {
   if (given) {
     return (
       <p className="mt-6 text-sm text-muted-foreground">
-        {lang === "mr"
-          ? "प्रतिसादाबद्दल धन्यवाद — तुमची नोंद जतन केली आहे."
-          : "Thanks — your note is saved on this device and will shape the next review of this page."}
+{catalog.feedbackThanks[lang]}
       </p>
     );
   }
@@ -47,23 +46,23 @@ export function FeedbackWidget({ lang }: { lang: string }) {
   return (
     <div className="mt-6 flex flex-wrap items-center gap-2 text-sm">
       <span className="text-muted-foreground">
-        {lang === "mr" ? "हे उत्तर उपयुक्त होते?" : "Was this answer useful?"}
+        {catalog.feedbackQuestion[lang]}
       </span>
       <button onClick={() => send("helpful")} className={btn + " border-border hover:border-primary hover:text-primary"}>
-        {lang === "mr" ? "उपयुक्त" : "Yes, helpful"}
+        {catalog.feedbackHelpful[lang]}
       </button>
       <button onClick={() => send("unclear")} className={btn + " border-border hover:border-primary hover:text-primary"}>
-        {lang === "mr" ? "अधिक स्पष्ट हवे" : "Needs clarity"}
+        {catalog.feedbackClarity[lang]}
       </button>
       <button onClick={() => send("contact")} className={btn + " border-border hover:border-primary hover:text-primary"}>
-        {lang === "mr" ? "मला वकिलाशी संपर्क करायचा आहे" : "I need a lawyer"}
+        {catalog.feedbackLawyer[lang]}
       </button>
     </div>
   );
 }
 
 /** WhatsApp / native share for a topic. */
-export function ShareButton({ title, lang }: { title: string; lang: string }) {
+export function ShareButton({ title, lang }: { title: string; lang: Lang }) {
   const onClick = () => {
     const url = location.href;
     const text = (lang === "mr" ? "सहकार न्याय — " : "Sahakar Nyaya — ") + title;
@@ -76,7 +75,7 @@ export function ShareButton({ title, lang }: { title: string; lang: string }) {
   return (
     <button onClick={onClick}
       className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary">
-      {lang === "mr" ? "शेअर करा" : "Share"}
+      {catalog.share[lang]}
     </button>
   );
 }

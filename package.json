@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/sw-manifest.mjs",
+    "build": "tsc -b && vite build && node scripts/guard-ui.mjs && node scripts/sw-manifest.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit"
   },
